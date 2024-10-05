@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Código y Cambiar Contraseña</title>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="vendor/animate/animate.css">
+    <link rel="stylesheet" href="vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" href="vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" href="vendor/select2/select2.min.css">
+    <link rel="stylesheet" href="vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="css/util.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body style="background-color: #666666;">
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <form id="verifyForm" class="login100-form validate-form">
+                    <span class="login100-form-title p-b-43">
+                        Verificar Código y Cambiar Contraseña
+                    </span>
+
+                    
+
+                    <div class="wrap-input100 validate-input" data-validate="Código de recuperación es requerido">
+                        <input class="input100" type="text" id="codigo" name="codigo">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Código de Recuperación</span>
+                    </div>
+                    
+                    <div class="wrap-input100 validate-input" data-validate="Nueva contraseña es requerida" style="display: none;" id="nueva_contrasena_wrapper">
+                        <input class="input100" type="password" id="nueva_contrasena" name="nueva_contrasena">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Nueva Contraseña</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Confirmar nueva contraseña es requerido" style="display: none;" id="confirmar_contrasena_wrapper">
+                        <input class="input100" type="password" id="confirmar_contrasena" name="confirmar_contrasena">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Confirmar Nueva Contraseña</span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button type="button" id="verifyCodeButton" class="login100-form-btn">
+                            VERIFICAR CÓDIGO
+                        </button>
+                        <button type="button" id="changePasswordButton" class="login100-form-btn" style="display:none;">
+                            CAMBIAR CONTRASEÑA
+                        </button>
+                    </div>
+
+                    <div class="text-center p-t-46 p-b-20">
+                        <span class="txt2">
+                            <a href="index.html">Regresar al inicio de sesión</a>
+                        </span>
+                    </div>
+                </form>
+
+                <div class="login100-more" style="background-image: url('images/bg-01.jpg');">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <script src="js/main.js"></script>
+    <script src="script_verify_code.js"></script>
+    
+</body>
+</html>
