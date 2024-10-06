@@ -5,9 +5,9 @@
     <?php $title = 'Blank' ?>
     <?php include './partials/head.php' ?>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            openPopup();
-        });
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     openPopup();
+        // });
 
         function openPopup() {
             const popupWidth = 800;  // Ancho del popup
@@ -37,9 +37,9 @@
         <div class="geex-content__section geex-content__error">
 				<div class="geex-content__error__wrapper">
 					<div class="geex-content__error__content">
-						<img src="./assets/img/maintanence.svg" alt="Maintanence Image">
+					<iframe src="https://lottie.host/embed/eb41299f-1c44-4293-b498-23bee738b42c/PzonXVHZaf.json"></iframe>
 						<div class="geex-content__pricing__btn-part">
-							<a class="geex-content__pricing__btn" href="">Validar Documento</a>
+							<a onclick="openPopup()" class="geex-content__pricing__btn" href="">Validar Documento</a>
 						</div>
 						<h3 class="geex-content__error__subtitle secondary">Volver a Cargar el Validador</h3>     
 						<p class="geex-content__error__desc">Utilice la herramienta de validación para verificar la firma y asegurar la integridad del documento.</p>

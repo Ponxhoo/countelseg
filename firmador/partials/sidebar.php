@@ -5,8 +5,8 @@
 	<div class="geex-sidebar__wrapper">
 		<div class="geex-sidebar__header">
 			<a href="index.php" class="geex-sidebar__logo">
-				<img class="logo-lite" src="../images/logo.png" alt="Header logo"  width="100" height="100"/>
-				<img class="logo-dark" src="../images/logo.png" alt="Header logo"  width="100" height="100" />
+				<img class="logo-lite" src="../images/Logo_oscuro.png" alt="Header logo"  />
+				<img class="logo-dark" src="../images/Logo_blanco.png" alt="Header logo"   />
 			</a>
 		</div>
 		<nav class="geex-sidebar__menu-wrapper">
@@ -74,11 +74,20 @@
 				
 			</ul>
 		</nav>
-        <div class="geex-sidebar__footer">
-			<span class="geex-sidebar__footer__title">Geex Modern Dashboard</span>
-			<p class="geex-sidebar__footer__copyright">© 2024 All Rights Reserved</p>
-			<p class="geex-sidebar__footer__author">Made with <span class="heart-icon">♥</span> by <a href="#">PixcelsThemes</a></p>
-        </div>
+		<div id="photoCarousel" class="carousel slide geex-sidebar__footer" data-bs-ride="carousel" data-bs-interval="3000">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+				<img src="../firmador/assets/img/image1.jpg" class="d-block w-100" alt="First Image">
+				</div>
+				<div class="carousel-item">
+				<img src="../firmador/assets/img/image2.jpg" class="d-block w-100" alt="Second Image">
+				</div>
+				<div class="carousel-item">
+				<img src="../firmador/assets/img/image3.jpg" class="d-block w-100" alt="Third Image">
+				</div>
+				<!-- Agrega más imágenes si es necesario -->
+			</div>
+		</div>
 	</div>
 </div>
 

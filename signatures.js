@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   loadSignatures();
-  loadSignatures_firmador();
+  //loadSignatures_firmador();
 });
 
 
@@ -9,8 +9,8 @@ function loadSignatures() {
   fetch("../get_signatures.php")
     .then((response) => response.json())
     .then((data) => {
-      // var signaturesList = document.getElementById("signaturesList");
-      // signaturesList.innerHTML = ""; // Limpiar la lista antes de agregar nuevos elementos
+      var signaturesList = document.getElementById("signaturesList");
+      signaturesList.innerHTML = ""; // Limpiar la lista antes de agregar nuevos elementos
 
       data.forEach((signature) => {
         // Verifica si 'validTo_time_t' está definido, sino muestra "Fecha no disponible"
@@ -46,6 +46,8 @@ function loadSignatures() {
         </button> `;
 
         signatureRow.appendChild(actionCell);
+        // Añadir la fila a la tabla
+        signaturesList.appendChild(signatureRow);
 
       });
     })

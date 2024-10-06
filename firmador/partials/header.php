@@ -2,8 +2,8 @@
 	<div class="geex-header__wrapper">
 		<div class="geex-header__logo-wrapper">
 			<a href="index.php" class="geex-header__logo">
-				<img class="logo-lite" src="../images/logo.png" alt="Header logo"  width="100" height="100"/>
-				<img class="logo-dark" src="../images/logo.png" alt="Header logo"  width="100" height="100" />
+				<img class="logo-lite" src="../images/Logo_oscuro.png" alt="Header logo"  width="100" height="100"/>
+				<img class="logo-dark" src="../images/Logo_blanco.png" alt="Header logo"  width="100" height="100" />
 			</a>
 		</div>
 		<nav class="geex-header__menu-wrapper">
