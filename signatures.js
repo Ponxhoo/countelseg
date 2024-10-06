@@ -1,43 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
   loadSignatures();
+  loadSignatures_firmador();
 });
 
-// function loadSignatures() {
-//     fetch('get_signatures.php')
-//         .then(response => response.json())
-//         .then(data => {
-//             var signaturesList = document.getElementById('signaturesList');
-//             signaturesList.innerHTML = '';
-//             data.forEach(signature => {
-//                 var signatureItem = document.createElement('div');
-//                 signatureItem.className = 'signature-item';
-//                 signatureItem.innerHTML = `
-//                     <p>${signature.signature_name}</p>
-//                     <button class="select-button" data-id="${signature.id}">Seleccionar</button>
-//                     <button class="delete-button" data-id="${signature.id}">Eliminar</button>
-//                 `;
-//                 signaturesList.appendChild(signatureItem);
-//             });
 
-//             var selectButtons = document.getElementsByClassName('select-button');
-//             for (var i = 0; i < selectButtons.length; i++) {
-//                 selectButtons[i].addEventListener('click', selectSignature);
-//             }
-
-//             var deleteButtons = document.getElementsByClassName('delete-button');
-//             for (var i = 0; i < deleteButtons.length; i++) {
-//                 deleteButtons[i].addEventListener('click', deleteSignature);
-//             }
-//         })
-//         .catch(error => console.error('Error:', error));
-// }
 
 function loadSignatures() {
   fetch("../get_signatures.php")
     .then((response) => response.json())
     .then((data) => {
-      var signaturesList = document.getElementById("signaturesList");
-      signaturesList.innerHTML = ""; // Limpiar la lista antes de agregar nuevos elementos
+      // var signaturesList = document.getElementById("signaturesList");
+      // signaturesList.innerHTML = ""; // Limpiar la lista antes de agregar nuevos elementos
 
       data.forEach((signature) => {
         // Verifica si 'validTo_time_t' está definido, sino muestra "Fecha no disponible"
@@ -60,50 +33,73 @@ function loadSignatures() {
 
         // Crear columna para las acciones
         var actionCell = document.createElement("td");
-        actionCell.innerHTML = `
-                  
-<button onclick="processDelete(${signature.id})" class="geex-badge geex-badge--danger-transparent eliminar-btn" onclick="confirmDelete()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M3 6H5H21" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M19 6L18.417 19.159C18.3745 20.0252 17.994 20.8495 17.3484 21.4593C16.7028 22.0691 15.8494 22.4148 14.9624 22.4149H9.0376C8.15062 22.4148 7.29718 22.0691 6.65161 21.4593C6.00604 20.8495 5.62548 20.0252 5.583 19.159L5 6" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M18 6L16.5 3.5C16.2266 3.01562 15.7425 2.737 15.2 2.737H8.8C8.25747 2.737 7.77341 3.01562 7.5 3.5L6 6" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    Eliminar
-</button> `;
+        actionCell.innerHTML = `  
+        <button onclick="processDelete(${signature.id})" class="geex-badge geex-badge--danger-transparent eliminar-btn" onclick="confirmDelete()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M3 6H5H21" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 6L18.417 19.159C18.3745 20.0252 17.994 20.8495 17.3484 21.4593C16.7028 22.0691 15.8494 22.4148 14.9624 22.4149H9.0376C8.15062 22.4148 7.29718 22.0691 6.65161 21.4593C6.00604 20.8495 5.62548 20.0252 5.583 19.159L5 6" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M18 6L16.5 3.5C16.2266 3.01562 15.7425 2.737 15.2 2.737H8.8C8.25747 2.737 7.77341 3.01562 7.5 3.5L6 6" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Eliminar
+        </button> `;
 
         signatureRow.appendChild(actionCell);
 
-        // Añadir la fila a la tabla
-        signaturesList.appendChild(signatureRow);
       });
-
-      // Manejar eventos para los botones de eliminar
-      //   var deleteButtons = document.getElementsByClassName("eliminar-btn");
-      //   for (var i = 0; i < deleteButtons.length; i++) {
-      //     deleteButtons[i].addEventListener("click", function () {
-      //       // Aquí puedes poner la lógica para eliminar la firma
-      //       console.log("Firma eliminada");
-      //     });
-      //   }
     })
     .catch((error) => console.error("Error:", error));
 }
 
-function selectSignature(event) {
-  var signatureId = event.target.getAttribute("data-id");
+function loadSignatures_firmador() {
+  fetch("../get_signatures.php")
+    .then((response) => response.json())
+    .then((data) => {
+      const selectElement = document.getElementById("firmas");
+      
+      // Limpiar opciones existentes
+      selectElement.innerHTML = "";
 
-  fetch("get_signature_by_id.php?id=" + signatureId)
+        const option1 = document.createElement("option");
+        option1.value = ""; // Asignar el id como valor de la opción
+        option1.text = "Selecione una opcion"; // Asignar el nombre como el texto de la opción
+        selectElement.appendChild(option1);
+
+      // Recorrer los datos y agregar cada firma como una opción
+      data.forEach((signature) => {
+        // Crear un nuevo elemento de opción
+        const option = document.createElement("option");
+        option.value = signature.id; // Asignar el id como valor de la opción
+        option.text = signature.signature_name; // Asignar el nombre como el texto de la opción
+
+        // Agregar la opción al select
+        selectElement.appendChild(option);
+      });
+    })
+    .catch((error) => console.error("Error:", error));
+}
+
+
+function selectSignature(id) {
+  // var signatureId = event.target.getAttribute("data-id");
+
+  fetch("../get_signature_by_id.php?id=" + id)
     .then((response) => response.json())
     .then((data) => {
       localStorage.setItem("selectedSignature", JSON.stringify(data));
-      alert(
-        `Firma seleccionada con éxito: ${data.signature_name}. Ahora puedes subir y firmar el PDF.`
-      );
+      // alert(
+      //   `Firma seleccionada con éxito: ${data.signature_name}. Ahora puedes subir y firmar el PDF.`
+      // );
+      Swal.fire(`Firma seleccionada con éxito:!  ${data.signature_name}!`, "", "success");
 
-      document.getElementById("uploadPDF").style.display = "block";
-      document.getElementById("uploadSignatureSection").style.display = "none";
+      // document.getElementById("uploadPDF").style.display = "block";
+      // document.getElementById("uploadSignatureSection").style.display = "none";
+
+      var viewerFrame = document.getElementById('pdfViewerFrame');
+      viewerFrame.src = '';
+      viewerFrame.style.display = 'block';
+
     })
     .catch((error) => console.error("Error:", error));
 }
@@ -166,6 +162,6 @@ async function processDelete(id) {
 
     }
   } else if (result.isDenied) {
-    Swal.fire("NO has confirmado", "", "info");
+    Swal.fire("No has confirmado", "", "info");
   }
 }

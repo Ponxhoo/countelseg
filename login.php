@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Consulta SQL para obtener el hash de la contraseña
-    $sql = "SELECT id, password FROM usuarios WHERE username = :username";
+    $sql = "SELECT id, password, fullName FROM usuarios WHERE username = :username";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
     $stmt->execute();

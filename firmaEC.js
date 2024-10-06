@@ -83,63 +83,6 @@ function logout() {
 let globalSignatureFile = null;
 let globalSignaturePassword = '';
 
-// function uploadSignature() {
-//     var signatureFileInput = document.getElementById('signatureFile').files[0];
-//     var signaturePasswordInput = document.getElementById('signaturePassword').value;
-
-//     if (!signatureFileInput || !signaturePasswordInput) {
-//         alert("Por favor, asegúrese de haber subido la firma y proporcionado la contraseña.");
-//         return;
-//     }
-
-//     var formData = new FormData();
-//     formData.append('signatureFile', signatureFileInput);
-//     formData.append('signaturePassword', signaturePasswordInput);
-
-//     var reader = new FileReader();
-//     reader.onload = function(event) {
-//         var base64String = btoa(event.target.result);
-//         localStorage.setItem('signatureFileBase64', base64String);
-//         localStorage.setItem('signaturePassword', signaturePasswordInput);
-
-//         var xhr = new XMLHttpRequest();
-//         xhr.open('POST', 'upload_signature.php', true);
-//         xhr.onreadystatechange = function() {
-//             if (xhr.readyState === 4) {
-//                 if (xhr.status === 200) {
-//                     var response = xhr.responseText.trim();
-//                     console.log('Respuesta del servidor:', response);
-//                     try {
-//                         var jsonResponse = JSON.parse(response);
-//                         if (jsonResponse.error) {
-//                             alert('Contraseña o archivo incorrecto');
-//                         } else {
-//                             globalSignatureFile = signatureFileInput;
-//                             globalSignaturePassword = signaturePasswordInput;
-
-//                             if (jsonResponse.certificado) {
-//                                 updateCertificateDetails(jsonResponse.certificado);
-//                             } else {
-//                                 getCertificateDetails();
-//                             }
-
-//                             document.getElementById('uploadPDF').style.display = 'block';
-//                             document.getElementById('uploadSignatureSection').style.display = 'none';
-//                         }
-//                     } catch (error) {
-//                         console.error('Error al analizar la respuesta JSON:', error);
-//                         alert('Contraseña o archivo incorrecto');
-//                     }
-//                 } else {
-//                     console.error('Error al subir la firma electrónica:', xhr.status);
-//                     alert('Contraseña o archivo incorrecto');
-//                 }
-//             }
-//         };
-//         xhr.send(formData);
-//     };
-//     reader.readAsBinaryString(signatureFileInput);
-// }
 
 function uploadSignature() {
     console.log('Subiendo firma electrónica...');
@@ -147,7 +90,9 @@ function uploadSignature() {
     var signaturePasswordInput = document.getElementById('signaturePassword').value;
 
     if (!signatureFileInput || !signaturePasswordInput) {
-        alert("Por favor, asegúrese de haber subido la firma y proporcionado la contraseña.");
+        // alert("Por favor, asegúrese de haber subido la firma y proporcionado la contraseña.");
+        Swal.fire(`Por favor, asegúrese de haber subido la firma y proporcionado la contraseña.`, "", "warning");
+
         return;
     }
 
@@ -291,21 +236,23 @@ function openPDFViewer() {
             var url = URL.createObjectURL(blob);
 
             var viewerFrame = document.getElementById('pdfViewerFrame');
-            viewerFrame.src = 'pdfViewer.html?pdfFile=' + encodeURIComponent(url);
+            viewerFrame.src = '../pdfViewer.html?pdfFile=' + encodeURIComponent(url);
             viewerFrame.style.display = 'block';
 
-            var pdfViewerContainer = document.getElementById('pdfViewerContainer');
-            pdfViewerContainer.style.display = 'block';
+            // var pdfViewerContainer = document.getElementById('pdfViewerContainer');
+            // pdfViewerContainer.style.display = 'block';
         };
         fileReader.readAsArrayBuffer(pdfFile);
     } else {
-        alert("Por favor, seleccione un archivo PDF.");
+        
+        Swal.fire(`Por favor, seleccione un archivo PDF.`, "", "warning");
     }
 }
 function signPDF() {
     var qrContainer = document.getElementById('qr-code');
     if (!qrContainer || qrContainer.innerHTML.trim() === '') {
-        alert("El código QR aún no ha sido generado. Por favor, genéralo antes de descargar el PDF.");
+        //alert("El código QR aún no ha sido generado. Por favor, genéralo antes de descargar el PDF.");
+        Swal.fire(`El código QR aún no ha sido generado. Por favor, genéralo antes de descargar el PDF.`, "", "warning");
         return;
     }
 
@@ -334,7 +281,8 @@ function signPDF() {
 function signPDF() {
     var qrContainer = document.getElementById('qr-code');
     if (!qrContainer || qrContainer.innerHTML.trim() === '') {
-        alert("El código QR aún no ha sido generado. Por favor, genéralo antes de descargar el PDF.");
+        // alert("El código QR aún no ha sido generado. Por favor, genéralo antes de descargar el PDF.");
+        Swal.fire(`El código QR aún no ha sido generado. Por favor, genéralo antes de descargar el PDF.`, "", "warning");
         return;
     }
 
