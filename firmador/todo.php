@@ -64,7 +64,7 @@
                             <li class="geex-content__header__popup__item">
                                 <a class="geex-content__header__popup__link" href="#">
                                     <div class="geex-content__header__popup__item__img">
-                                        <img src="assets/img/avatar/user.svg" alt="Popup Img" class="" />
+                                        <img src="assets/img/avatar/profile.png" alt="Popup Img" class="" />
                                     </div>
                                     <div class="geex-content__header__popup__item__content">
                                         <h5 class="geex-content__header__popup__item__title">
@@ -81,7 +81,7 @@
                             <li class="geex-content__header__popup__item">
                                 <a class="geex-content__header__popup__link" href="#">
                                     <div class="geex-content__header__popup__item__img">
-                                        <img src="assets/img/avatar/user.svg" alt="Popup Img" class="" />
+                                        <img src="assets/img/avatar/profile.png" alt="Popup Img" class="" />
                                     </div>
                                     <div class="geex-content__header__popup__item__content">
                                         <h5 class="geex-content__header__popup__item__title">
@@ -98,7 +98,7 @@
                             <li class="geex-content__header__popup__item">
                                 <a class="geex-content__header__popup__link" href="#">
                                     <div class="geex-content__header__popup__item__img">
-                                        <img src="assets/img/avatar/user.svg" alt="Popup Img" class="" />
+                                        <img src="assets/img/avatar/profile.png" alt="Popup Img" class="" />
                                     </div>
                                     <div class="geex-content__header__popup__item__content">
                                         <h5 class="geex-content__header__popup__item__title">
@@ -115,7 +115,7 @@
                             <li class="geex-content__header__popup__item">
                                 <a class="geex-content__header__popup__link" href="#">
                                     <div class="geex-content__header__popup__item__img">
-                                        <img src="assets/img/avatar/user.svg" alt="Popup Img" class="" />
+                                        <img src="assets/img/avatar/profile.png" alt="Popup Img" class="" />
                                     </div>
                                     <div class="geex-content__header__popup__item__content">
                                         <h5 class="geex-content__header__popup__item__title">
@@ -149,7 +149,7 @@
                             <li class="geex-content__header__popup__item">
                                 <a class="geex-content__header__popup__link" href="#">
                                     <div class="geex-content__header__popup__item__img">
-                                        <img src="assets/img/avatar/user.svg" alt="Popup Img" class="" />
+                                        <img src="assets/img/avatar/profile.png" alt="Popup Img" class="" />
                                     </div>
                                     <div class="geex-content__header__popup__item__content">
                                         <h5 class="geex-content__header__popup__item__title">
@@ -166,7 +166,7 @@
                             <li class="geex-content__header__popup__item">
                                 <a class="geex-content__header__popup__link" href="#">
                                     <div class="geex-content__header__popup__item__img">
-                                        <img src="assets/img/avatar/user.svg" alt="Popup Img" class="" />
+                                        <img src="assets/img/avatar/profile.png" alt="Popup Img" class="" />
                                     </div>
                                     <div class="geex-content__header__popup__item__content">
                                         <h5 class="geex-content__header__popup__item__title">
@@ -183,7 +183,7 @@
                             <li class="geex-content__header__popup__item">
                                 <a class="geex-content__header__popup__link" href="#">
                                     <div class="geex-content__header__popup__item__img">
-                                        <img src="assets/img/avatar/user.svg" alt="Popup Img" class="" />
+                                        <img src="assets/img/avatar/profile.png" alt="Popup Img" class="" />
                                     </div>
                                     <div class="geex-content__header__popup__item__content">
                                         <h5 class="geex-content__header__popup__item__title">
@@ -200,7 +200,7 @@
                             <li class="geex-content__header__popup__item">
                                 <a class="geex-content__header__popup__link" href="#">
                                     <div class="geex-content__header__popup__item__img">
-                                        <img src="assets/img/avatar/user.svg" alt="Popup Img" class="" />
+                                        <img src="assets/img/avatar/profile.png" alt="Popup Img" class="" />
                                     </div>
                                     <div class="geex-content__header__popup__item__content">
                                         <h5 class="geex-content__header__popup__item__title">
@@ -220,12 +220,12 @@
             </li>
             <li class="geex-content__header__quickaction__item">
                 <a href="#" class="geex-content__header__quickaction__link">
-                    <img class="user-img" src="assets/img/avatar/user.svg" alt="user" />
+                    <img class="user-img" src="assets/img/avatar/profile.png" alt="user" />
                 </a>
                 <div class="geex-content__header__popup geex-content__header__popup--author">
                     <div class="geex-content__header__popup__header">
                         <div class="geex-content__header__popup__header__img">
-                            <img src="assets/img/avatar/user.svg" alt="user" />
+                            <img src="assets/img/avatar/profile.png" alt="user" />
                         </div>
                         <div class="geex-content__header__popup__header__content">
                             <h3 class="geex-content__header__popup__header__title">Mahabub Alam</h3>

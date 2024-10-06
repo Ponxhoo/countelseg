@@ -2,6 +2,11 @@
 <html lang="en" dir="ltr">
 
 <?php include './partials/head.php' ?>
+<script>
+    window.onload = function() {
+        loadSignatures_firmador();
+    };
+</script>
 
 <body class="geex-dashboard">
 
@@ -35,12 +40,12 @@
 
                             <li class="geex-content__header__quickaction__item">
                                 <a href="#" class="geex-content__header__quickaction__link">
-                                    <img class="user-img" src="assets/img/avatar/user.svg" alt="user" />
+                                    <img class="user-img" src="assets/img/avatar/profile.png" alt="user" />
                                 </a>
                                 <div class="geex-content__header__popup geex-content__header__popup--author">
                                     <div class="geex-content__header__popup__header">
                                         <div class="geex-content__header__popup__header__img">
-                                            <img src="assets/img/avatar/user.svg" alt="user" />
+                                            <img src="assets/img/avatar/profile.png" alt="user" />
                                         </div>
                                         <div class="geex-content__header__popup__header__content">
                                             <h3 class="geex-content__header__popup__header__title">Mahabub Alam</h3>

@@ -33,29 +33,42 @@
                     <div class="geex-content__header__action__wrap">
                         <ul class="geex-content__header__quickaction">
 
-                            <li class="geex-content__header__quickaction__item">
-                                <a href="#" class="geex-content__header__quickaction__link">
-                                    <img class="user-img" src="assets/img/avatar/user.svg" alt="user" />
-                                </a>
-                                <div class="geex-content__header__popup geex-content__header__popup--author">
-                                    <div class="geex-content__header__popup__header">
-                                        <div class="geex-content__header__popup__header__img">
-                                            <img src="assets/img/avatar/user.svg" alt="user" />
-                                        </div>
-                                        <div class="geex-content__header__popup__header__content">
-                                            <h3 class="geex-content__header__popup__header__title">Mahabub Alam</h3>
-                                            <span class="geex-content__header__popup__header__subtitle">CEO,
-                                                PixcelsThemes</span>
-                                        </div>
-                                    </div>
-                                    <div class="geex-content__header__popup__content">
-                                        <ul class="geex-content__header__popup__items">
-                                            <li class="geex-content__header__popup__item">
-                                                <a class="geex-content__header__popup__link" href="#">
-                                                    <i class="uil uil-user"></i>
-                                                    Profile
-                                                </a>
-                                            </li>
+							<li class="geex-content__header__quickaction__item">
+								<a href="#" class="geex-content__header__quickaction__link">
+									<img class="user-img" src="assets/img/avatar/profile.png" alt="user" />
+									
+								</a>
+								<div class="geex-content__header__popup geex-content__header__popup--author">
+									<div class="geex-content__header__popup__header">
+										<div class="geex-content__header__popup__header__img">
+											<img src="assets/img/avatar/profile.png" alt="user" />
+										</div>
+										<div class="geex-content__header__popup__header__content">
+											<h3 class="geex-content__header__popup__header__title">
+												<?php echo $_SESSION['user'] ?></h3>
+										</div>
+									</div>
+									<div class="geex-content__header__popup__content">
+										<ul class="geex-content__header__popup__items">
+											<li class="geex-content__header__popup__item">
+												<a class="geex-btn__add-modal_password">
+													<i class="uil uil-user"></i>
+													Cambiar Contraseña
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="geex-content__header__popup__footer">
+										<a onclick="logout()" class="geex-content__header__popup__footer__link">
+											<i class="uil uil-arrow-up-left"></i>Cerrar Sesión
+										</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 
                                         </ul>
                                     </div>
