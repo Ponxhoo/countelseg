@@ -27,7 +27,6 @@
 	<!-- Fonts -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<link rel="stylesheet" type="text/css" href="/static/lib/semantic-ui/semantic.min.css">
 	
     <script>
 		// Render localStorage JS:
