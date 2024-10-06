@@ -75,5 +75,3 @@
 		</div>
 	</div>
 </header>
-
-url = "https://vol.uanatacaca.com/api/documents/e09ec1e97030888f36/verify/report"
