@@ -22,7 +22,7 @@
 			<div class="geex-content__section geex-content__blank">
 				<div class="geex-content__error__wrapper">
 					<div class="geex-content__error__content">
-						
+						 <iframe src="https://vol.uanataca.com/ec" title="Vol UANATACA"></iframe>
 					</div><!-- .page-content -->
 				</div>
 			</div>
@@ -34,4 +34,28 @@
 	<!-- endinject-->
 </body>
 
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Firmas</title>
+</head>
+<body>
+
+    <button onclick="openPopup()">Abrir Validador de Firmas</button>
+
+    <script>
+        function openPopup() {
+            window.open('https://vol.uanataca.com/es', 'popup', 'width=800,height=600');
+        }
+    </script>
+
+</body>
 </html>

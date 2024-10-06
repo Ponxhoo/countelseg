@@ -214,6 +214,12 @@
 		$("body").addClass("overlay_active");
   	});
 
+	// Customizer Toggle
+	$(".geex-btn__password").click(function() {
+		$(".geex-password").toggleClass("active");
+		$("body").addClass("overlay_active");
+  	});
+
 	// Customizer Close
 	$(".geex-customizer-overlay, .geex-btn__customizer-close").click(function() {
 		$(".geex-customizer").removeClass("active");
@@ -292,7 +298,16 @@
 
 	// Add Todo
 	$(".geex-btn__add-modal").click(function() {
-		$(".geex-content__modal__form").addClass("active");
+		// $(".geex-content__modal__form").addClass("active"); 
+		$("#modal1.geex-content__modal__form").addClass("active");
+
+		$("body").addClass("overlay_active");
+  	})
+
+	  $(".geex-btn__add-modal_password").click(function() {
+		// $(".geex-content__modal__form").addClass("active");
+		$("#modal2.geex-content__modal__form").addClass("active");
+		
 		$("body").addClass("overlay_active");
   	})
 

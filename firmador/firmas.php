@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en" dir="ltr">
 
@@ -12,6 +15,8 @@
 		<?php include './partials/sidebar.php' ?>
 
 		<?php include './partials/customizer.php' ?>
+
+
 
 		<div class="geex-content">
 			<div class="geex-content__header">
@@ -43,25 +48,23 @@
 											<img src="assets/img/avatar/user.svg" alt="user" />
 										</div>
 										<div class="geex-content__header__popup__header__content">
-											<h3 class="geex-content__header__popup__header__title">Mahabub Alam</h3>
-											<span class="geex-content__header__popup__header__subtitle">CEO,
-												PixcelsThemes</span>
+											<h3 class="geex-content__header__popup__header__title">
+												<?php echo $_SESSION['user'] ?></h3>
 										</div>
 									</div>
 									<div class="geex-content__header__popup__content">
 										<ul class="geex-content__header__popup__items">
 											<li class="geex-content__header__popup__item">
-												<a class="geex-content__header__popup__link" href="#">
+												<a class="geex-btn__add-modal_password">
 													<i class="uil uil-user"></i>
-													Profile
+													Cambiar Contraseña
 												</a>
 											</li>
-
 										</ul>
 									</div>
 									<div class="geex-content__header__popup__footer">
-										<a href="#" class="geex-content__header__popup__footer__link">
-											<i class="uil uil-arrow-up-left"></i>Logout
+										<a onclick="logout()" class="geex-content__header__popup__footer__link">
+											<i class="uil uil-arrow-up-left"></i>Cerrar Sesión
 										</a>
 									</div>
 								</div>
@@ -74,31 +77,32 @@
 			<div class="geex-content__section geex-content__form">
 				<div class="geex-content__form__wrapper">
 					<div class="geex-content__form__wrapper__item geex-content__form__left">
-					<div class="geex-content__todo__header__title">
-										<button class="geex-btn geex-btn--primary geex-btn__add-modal"><i class="uil-plus"></i> Agregar Firma</button>
-									</div>
+						<div class="geex-content__todo__header__title">
+							<button class="geex-btn geex-btn--primary geex-btn__add-modal"><i class="uil-plus"></i>
+								Agregar Firma</button>
+						</div>
 
 					</div>
 				</div>
-				
-
-									<table width="100%">
-										<thead>
-											<tr>
-												<th>Nombre</th>
-												<th>Fecha de Vencimiento</th>
-												<th>Acciones</th>
-											</tr>
-										</thead>
-										<tbody id="signaturesList">
-											<!-- Aquí se insertan las filas dinámicamente -->
-										</tbody>
-									</table>
 
 
+				<table width="100%">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Fecha de Vencimiento</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody id="signaturesList">
+						<!-- Aquí se insertan las filas dinámicamente -->
+					</tbody>
+				</table>
 
 
-			
+
+
+
 
 			</div>
 
@@ -106,28 +110,64 @@
 
 
 
-		<div class="geex-content__modal__form">
-						<div class="geex-content__modal__form__header">
-							<h3 class="geex-content__modal__form__title">Subir Firma Electrónica</h3>
-							<button class="geex-content__modal__form__close">
-								<i class="uil-times"></i>
-							</button>
-						</div>
-						<!-- /<form class="geex-content__modal__form__wrapper"> -->
-							<div class="geex-content__modal__form__item">
-								<input id="signatureFile" type="file" name="firma" class="geex-content__modal__form__input" placeholder="firma" accept=".p12"  />
-							</div>
-							<div class="geex-content__modal__form__item">
-								<input id="signaturePassword" type="password" name="Clavefirma" class="geex-content__modal__form__input" placeholder="Clave" />
-							</div>
-							
-							<div class="geex-content__modal__form__item">
-								<button id="uploadSignatureButton"  class="geex-content__modal__form__submit">Guardar</button>
-							</div>
-						<!-- </form> -->
-					</div>
-				</div>
+		<div class="geex-content__modal__form" id="modal1">
+			<div class="geex-content__modal__form__header">
+				<h3 class="geex-content__modal__form__title">Subir Firma Electrónica</h3>
+				<button class="geex-content__modal__form__close">
+					<i class="uil-times"></i>
+				</button>
 			</div>
+			<!-- /<form class="geex-content__modal__form__wrapper"> -->
+			<div class="geex-content__modal__form__item">
+				<input id="signatureFile" type="file" name="firma" class="geex-content__modal__form__input"
+					placeholder="firma" accept=".p12" />
+			</div>
+			<div class="geex-content__modal__form__item">
+				<input id="signaturePassword" type="password" name="Clavefirma" class="geex-content__modal__form__input"
+					placeholder="Clave" />
+			</div>
+
+			<div class="geex-content__modal__form__item">
+				<button id="uploadSignatureButton" class="geex-content__modal__form__submit">Guardar</button>
+			</div>
+			<!-- </form> -->
+		</div>
+
+
+
+
+		<!-- Modal para cambiar contraseña -->
+		<div class="geex-content__modal__form" id="modal2">
+			<div class="geex-content__modal__form__header">
+				<h3 class="geex-content__modal__form__title">Cambiar contraseña</h3>
+				<button class="geex-content__modal__form__close">
+					<i class="uil-times"></i>
+				</button>
+			</div>
+			<!-- /<form class="geex-content__modal__form__wrapper"> -->
+			
+			<div class="geex-content__modal__form__item">
+				<input id="currentPassword" type="password" class="geex-content__modal__form__input"
+					placeholder="Contraseña actual" />
+			</div>
+			<div class="geex-content__modal__form__item">
+				<input id="newPassword" type="password"  class="geex-content__modal__form__input"
+					placeholder="Contraseña nueva" />
+			</div>
+			<div class="geex-content__modal__form__item">
+				<input id="confirmNewPassword" type="password"  class="geex-content__modal__form__input"
+					placeholder="Confirmar nueva contraseña" />
+			</div>
+
+			<div class="geex-content__modal__form__item">
+				<button onclick="submitChangePassword()" class="geex-content__modal__form__submit">Cambiar</button>
+			</div>
+			<!-- </form> -->
+		</div>
+
+
+
+
 	</main>
 
 	<!-- inject:js-->
@@ -135,8 +175,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.27.0/dist/apexcharts.min.js"></script>
 	<script src="../firmaEC.js"></script>
 	<script src="../signatures.js"></script>
-	
-	
+
+
 	<?php include './partials/script.php' ?>
 	<!-- endinject-->
 
@@ -144,20 +184,21 @@
 </body>
 <style>
 	table {
-    width: 100%;
-    border-collapse: collapse;
-}
+		width: 100%;
+		border-collapse: collapse;
+	}
 
-th, td {
-    text-align: left;
-    padding: 8px;
-    width: 33%; /* Ajusta este valor según sea necesario */
-}
+	th,
+	td {
+		text-align: left;
+		padding: 8px;
+		width: 33%;
+		/* Ajusta este valor según sea necesario */
+	}
 
-th {
-    background-color: #f2f2f2;
-}
-
+	th {
+		background-color: #f2f2f2;
+	}
 </style>
 
 </html>

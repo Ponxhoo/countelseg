@@ -166,6 +166,6 @@ async function processDelete(id) {
 
     }
   } else if (result.isDenied) {
-    Swal.fire("NO has confirmado", "", "info");
+    Swal.fire("No has confirmado", "", "info");
   }
 }

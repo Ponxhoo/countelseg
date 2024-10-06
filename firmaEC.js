@@ -30,6 +30,7 @@ function showUserProfile() {
 }
 
 function changePassword() {
+
     openTab('changePasswordForm');
 }
 
@@ -39,21 +40,38 @@ function submitChangePassword() {
     var confirmNewPassword = document.getElementById('confirmNewPassword').value;
 
     if (newPassword !== confirmNewPassword) {
-        alert("Las nuevas contraseñas no coinciden");
+
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Las nuevas contraseñas no coinciden",
+            footer: ''
+          });
         return;
     }
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'changePassword.php', true);
+    xhr.open('POST', '../changePassword.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
         if (xhr.status === 200) {
-            alert(xhr.responseText); 
-            if (xhr.responseText === "Contraseña cambiada exitosamente") {
-                openTab('perfil'); 
-            }
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Contraseña cambiada exitosamente",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         } else {
-            alert('Error al cambiar la contraseña');
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Error al cambiar la contraseña",
+            footer: ''
+          });
         }
     };
     xhr.send('currentPassword=' + encodeURIComponent(currentPassword) +
@@ -61,7 +79,7 @@ function submitChangePassword() {
 }
 
 function logout() {
-    fetch('logout.php', {
+    fetch('../logout.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -70,7 +88,7 @@ function logout() {
     })
     .then(response => {
         if (response.ok) {
-            window.location.href = 'index.html';
+            window.location.href = 'index.php';
         } else {
             console.error('Error al cerrar sesión');
         }
@@ -360,3 +378,5 @@ function signPDF() {
 }
 
 openTab('firmar');
+
+

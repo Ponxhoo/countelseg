@@ -53,7 +53,7 @@
                             <li class="geex-content__header__popup__item">
                                 <a class="geex-content__header__popup__link" href="#">
                                     <i class="uil uil-user"></i>
-                                    Profile
+                                    Perfil
                                 </a>
                             </li>
                            
