@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
         $stmt->bindParam(':signature', base64_encode($pkcs12Content), PDO::PARAM_STR); // Almacenar el archivo codificado en base64
         $stmt->bindParam(':signatureName', $signatureData['nombre'], PDO::PARAM_STR);
-        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+        $stmt->bindParam(':password', base64_encode($password), PDO::PARAM_STR);
         $stmt->bindParam(':validTo_time_t', $signatureData['fechaVencimiento'], PDO::PARAM_STR);
         $stmt->execute();
         http_response_code(200);

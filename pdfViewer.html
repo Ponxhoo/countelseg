@@ -39,15 +39,16 @@
 <body>
     <canvas id="the-canvas"></canvas>
     <div id="controls">
-        <button id="prev">Anterior</button>
-        <span>Página: <span id="page_num"></span> / <span id="page_count"></span></span>
-        <button id="next">Siguiente</button>
-        <button id="done">Firmar y descargar</button>
+        <button id="prev" class="geex-btn geex-btn--primary" >Anterior</button>
+        <span Error al cambiar la contraseña>Página: <span id="page_num"></span> / <span id="page_count"></span></span>
+        <button id="next" class="geex-btn geex-btn--primary" >Siguiente</button>
+        <button id="done" class="geex-btn geex-btn--success" >Firmar y descargar</button>
         <a id="download" href="#" download="documento_firmado.pdf"></a>
     </div>
 
     <!-- Incluir QRCode.js -->
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
 
     <!-- Incluir jsPDF y jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -55,6 +56,7 @@
 
     <!-- Incluir PDF.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <link rel="stylesheet" href="firmador/assets/css/style.css">
 
     <script>
         var urlParams = new URLSearchParams(window.location.search);
@@ -291,10 +293,12 @@
 
                 const pdfData = pdf.output('datauristring');
                 const pdfBase64 = pdfData.split(',')[1];
+                password_deco = atob(selectedSignature.password);
+
 
                 const formData = new FormData();
                 formData.append('signatureFileBase64', selectedSignature.signature);
-                formData.append('password', selectedSignature.password);
+                formData.append('password',password_deco );
                 formData.append('documentoBase64', pdfBase64);
                 formData.append('llx', selectedCoordinates.x);
                 formData.append('lly', selectedCoordinates.y);

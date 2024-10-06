@@ -8,13 +8,13 @@ session_start();
 
 <body class="geex-dashboard">
 
-	<?php include './partials/header.php' ?>
+    <?php include './partials/header.php' ?>
 
-	<main class="geex-main-content">
+    <main class="geex-main-content">
 
-		<?php include './partials/sidebar.php' ?>
+        <?php include './partials/sidebar.php' ?>
 
-		<?php include './partials/customizer.php' ?>
+        <?php include './partials/customizer.php' ?>
 
 
 
@@ -25,18 +25,18 @@ session_start();
 					<p class="geex-content__header__subtitle">Sus documentos firmados de forma rápida y segura</p>
 				</div>
 
-				<div class="geex-content__header__action">
-					<div class="geex-content__header__customizer">
-						<button class="geex-btn geex-btn__toggle-sidebar">
-							<i class="uil uil-align-center-alt"></i>
-						</button>
-						<button class="geex-btn geex-btn__customizer">
-							<i class="uil uil-pen"></i>
-							<span>Aspecto</span>
-						</button>
-					</div>
-					<div class="geex-content__header__action__wrap">
-						<ul class="geex-content__header__quickaction">
+                <div class="geex-content__header__action">
+                    <div class="geex-content__header__customizer">
+                        <button class="geex-btn geex-btn__toggle-sidebar">
+                            <i class="uil uil-align-center-alt"></i>
+                        </button>
+                        <button class="geex-btn geex-btn__customizer">
+                            <i class="uil uil-pen"></i>
+                            <span>Aspecto</span>
+                        </button>
+                    </div>
+                    <div class="geex-content__header__action__wrap">
+                        <ul class="geex-content__header__quickaction">
 
 							<li class="geex-content__header__quickaction__item">
 								<a href="#" class="geex-content__header__quickaction__link">
@@ -104,9 +104,10 @@ session_start();
 
 
 
-			</div>
 
-		</div>
+            </div>
+
+        </div>
 
 
 
