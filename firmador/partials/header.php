@@ -34,7 +34,7 @@
 						</li>
 					</ul>
 				</li>
-				<li class="geex-header__menu__item has-children">
+				<!-- <li class="geex-header__menu__item has-children">
 					<a href="#" class="geex-header__menu__link">
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<g clip-path="url(#clip0_1141_9723)">
@@ -59,7 +59,7 @@
 							<a href="index-4.php" class="geex-sidebar__menu__link">Solicitar Facturación Electronica</a>
 						</li>
 					</ul>
-				</li>
+				</li> -->
 
 				
 			</ul>
