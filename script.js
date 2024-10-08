@@ -1,11 +1,14 @@
 
+document.getElementById("sign-in-container").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Evita que se envíe el formulario
+    }
+});
+
 // Función para manejar la solicitud de inicio de sesión
 function iniciarSesion() {
     var username = document.getElementById('username_login').value;
     var password = document.getElementById('password_login').value;
-
-    console.log('Usuario: ' + username);
-    console.log('Contraseña: ' + password);
 
     // Hacer la solicitud al servidor para verificar las credenciales
     var xhr = new XMLHttpRequest();
