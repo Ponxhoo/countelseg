@@ -49,6 +49,7 @@
 
     </div>
     <div class="form-container sign-in-container">
+        
         <form action="#" id="sign-in-container">
             <div class="hide" id="forgot">
                 <div class="enter-email">
@@ -85,6 +86,7 @@
                 Iniciar sesión
             </button>
         </form>
+        
     </div>
     <div class="overlay-container">
         <div class="overlay">
