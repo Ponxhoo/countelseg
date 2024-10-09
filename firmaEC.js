@@ -1,7 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('uploadSignatureButton').addEventListener('click', uploadSignature);
-    //loadSignatures();
+    const uploadSignatureButton = document.getElementById('uploadSignatureButton');
+    
+    if (uploadSignatureButton) {
+        uploadSignatureButton.addEventListener('click', uploadSignature);
+    }
+
+    // Código para obtener datos de 'setting.php'
+    fetch('../setting.php')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("firmas").innerText = data.cantidad;
+        })
+        .catch(error => {
+            // console.error('Error al obtener el perfil del usuario:', error);
+        });
 });
+
 
 function openTab(tabName) {
     var i, tabcontent;
