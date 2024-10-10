@@ -1565,8 +1565,8 @@ blockquote span:before {
 }
 
 .geex-badge--danger-transparent {
-  color: var(--danger-color);
-  background-color: var(--danger-color-transparent);
+  color: #FFF;
+  background-color: #051356;
 }
 
 .geex-badge--pink {
@@ -9479,7 +9479,9 @@ blockquote span:before {
   .geex-content__error__subtitle.secondary {
     font-size: 45px;
     line-height: 50px;
+    margin-top: 25px;
   }
+  
 }
 
 @media only screen and (max-width: 991px) {

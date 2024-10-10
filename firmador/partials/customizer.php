@@ -1,6 +1,6 @@
 <div class="geex-customizer">
 	<div class="geex-customizer__header">
-		<h4 class="geex-customizer__title">Customizer</h4>
+		<h4 class="geex-customizer__title">Aspecto</h4>
 		<button class="geex-btn geex-btn__customizer-close">
 			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M18 7.05L16.95 6L12 10.95L7.05 6L6 7.05L10.95 12L6 16.95L7.05 18L12 13.05L16.95 18L18 16.95L13.05 12L18 7.05Z" fill="#BCBFDB"/>
@@ -10,7 +10,7 @@
 	</div>
 	<div class="geex-customizer__body">
 		<div class="geex-customizer__single">
-			<h5 class="geex-customizer__single__title">Layout Types</h5>
+			<h5 class="geex-customizer__single__title">Orientaciòn de Menú</h5>
 			<ul class="geex-customizer__list geex-customizer__list--layout">
 				<li class="geex-customizer__list__item">
 					<button class="geex-btn geex-customizer__btn geex-customizer__btn--ltr active">
@@ -19,12 +19,12 @@
 							<rect x="4.5" y="12.5" width="19" height="5" rx="1.5" stroke="white"/>
 							<rect width="1" height="20" fill="white"/>
 						</svg>
-						LTR
+						Derecho
 					</button>
 				</li>
 				<li class="geex-customizer__list__item">
 					<button class="geex-btn geex-customizer__btn geex-customizer__btn--rtl">
-						RTL
+					Izquierdo
 						<svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<rect x="-0.5" y="0.5" width="13" height="5" rx="1.5" transform="matrix(-1 0 0 1 19 2)" stroke="#AB54DB"/>
 							<rect x="-0.5" y="0.5" width="19" height="5" rx="1.5" transform="matrix(-1 0 0 1 19 12)" stroke="#AB54DB"/>
@@ -35,7 +35,7 @@
 			</ul>
 		</div>
 		<div class="geex-customizer__single">
-			<h4 class="geex-customizer__single__title">Mode Type</h4>
+			<h4 class="geex-customizer__single__title">Modo</h4>
 			<ul class="geex-customizer__list geex-customizer__list--sidebar">
 				<li class="geex-customizer__list__item">
 					<button class="geex-btn geex-customizer__btn geex-customizer__btn--light active">
@@ -64,7 +64,7 @@
 			</ul>
 		</div>
 		<div class="geex-customizer__single">
-			<h4 class="geex-customizer__single__title">Navbar Type</h4>
+			<h4 class="geex-customizer__single__title">Tipo de menù</h4>
 			<ul class="geex-customizer__list geex-customizer__list--navbar">
 				<li class="geex-customizer__list__item">
 					<button class="geex-btn geex-customizer__btn geex-customizer__btn--side active">

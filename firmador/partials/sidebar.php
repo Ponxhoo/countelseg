@@ -90,16 +90,16 @@
 
 			<div class="social-icons">
 				<a href="https://www.facebook.com" target="_blank">
-					<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+					<img src="../firmador/assets/img/facebook.png" alt="Facebook">
 				</a>
 				<a href="https://www.youtube.com" target="_blank">
-					<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube">
+					<img src="../firmador/assets/img/youtube.png" alt="YouTube">
 				</a>
 				<a href="https://www.yourwebsite.com" target="_blank">
-					<img src="../firmador/assets/img/globo.png" alt="Página Web">
+					<img src="../firmador/assets/img/url.png" alt="Página Web">
 				</a>
 				<a href="https://wa.me/1234567890" target="_blank">
-					<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+					<img src="../firmador/assets/img/whatsapp.png" alt="WhatsApp">
 				</a>
 			</div>
 
@@ -115,6 +115,7 @@
                     padding: 20px;
                     background-color: #f7f7f7;
                     border-radius: 10px;
+					margin-top: 15px;
                 }
 
                 .social-icons a {
@@ -122,8 +123,8 @@
                 }
 
                 .social-icons img {
-                    width: 40px;
-                    height: 40px;
+                    width: 27px;
+  					height: 27px;
                     transition: transform 0.3s ease;
                 }
 

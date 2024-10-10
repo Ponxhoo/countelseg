@@ -185,10 +185,12 @@
         padding: 8px;
         width: 33%;
         /* Ajusta este valor según sea necesario */
+        
     }
 
     th {
         background-color: #f2f2f2;
+        color: #011053 !important;
     }
 </style>
 

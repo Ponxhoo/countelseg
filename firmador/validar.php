@@ -41,7 +41,7 @@
 						<div class="geex-content__pricing__btn-part">
 							<a onclick="openPopup()" class="geex-content__pricing__btn" href="">Validar Documento</a>
 						</div>
-						<h3 class="geex-content__error__subtitle secondary">Volver a Cargar el Validador</h3>     
+						<h3 class="geex-content__error__subtitle secondary">Validación firma electrónica</h3>     
 						<p class="geex-content__error__desc">Utilice la herramienta de validación para verificar la firma y asegurar la integridad del documento.</p>
 					</div><!-- .page-content -->
 				</div>
