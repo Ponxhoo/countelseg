@@ -66,6 +66,10 @@ CSS INDEX
   max-width: 100%;
 }
 
+.swal2-title{
+  font-size: 15px !important;
+}
+
 .geex-header__menu-wrapper {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -313,8 +317,9 @@ Sidebar
 }
 
 .geex-sidebar__logo img {
-  max-height: 100%;
-  max-width: 100%;
+  max-width: 58%;
+  margin-left: 40px;
+  margin-bottom: -35px !important;
 }
 
 .geex-sidebar__close {
@@ -396,6 +401,7 @@ Sidebar
   }
 }
 
+
 .geex-sidebar__menu__link i {
   font-size: 23px;
   color: var(--grayThree-color);
@@ -413,8 +419,8 @@ Sidebar
 }
 
 .geex-sidebar__menu__link.default-active, .geex-sidebar__menu__link.active, .geex-sidebar__menu__link:hover {
-  color: var(--primary-color) !important;
-  background: rgba(171, 84, 219, 0.15);
+  
+  background: rgb(56, 133, 201);
 }
 
 .geex-sidebar__menu__link.default-active i, .geex-sidebar__menu__link.active i, .geex-sidebar__menu__link:hover i {
@@ -422,7 +428,7 @@ Sidebar
 }
 
 .geex-sidebar__menu__link.default-active svg path, .geex-sidebar__menu__link.active svg path, .geex-sidebar__menu__link:hover svg path {
-  fill: var(--primary-color);
+ fill: #fff;
 }
 
 .geex-sidebar__submenu {
@@ -1566,7 +1572,7 @@ blockquote span:before {
 
 .geex-badge--danger-transparent {
   color: #FFF;
-  background-color: #051356;
+  background-color: #000;
 }
 
 .geex-badge--pink {
@@ -2519,7 +2525,7 @@ blockquote span:before {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  color: var(--body-color) !important;
+          color: #fff !important;
 }
 
 .geex-content__header__popup__footer__link i {
@@ -2527,7 +2533,7 @@ blockquote span:before {
 }
 
 .geex-content__header__popup__footer__link:hover {
-  color: var(--primary-color) !important;
+  color: #000 !important;
 }
 
 .geex-content__header__popup__title {
@@ -11126,7 +11132,7 @@ html[data-theme="dark"] .logo-lite {
 }
 
 html[data-theme="dark"] a {
-  color: var(--sec-color);
+  color: #fff;
 }
 
 html[data-theme="dark"] a:hover {
@@ -11232,7 +11238,7 @@ html[data-theme="dark"] .geex-content__visitor-count__number__subtitle,
 html[data-theme="dark"] .geex-content__review__single__content__text,
 html[data-theme="dark"] .geex-content__pricing__subtitle,
 html[data-theme="dark"] .geex-content__pricing__profit {
-  color: var(--sec-color);
+  color: #fff;
 }
 
 html[data-theme="dark"] #pie-chart .apexcharts-legend-text {
@@ -11361,9 +11367,9 @@ html[data-theme="dark"] .geex-content__authentication__form-group input,
 html[data-theme="dark"] .geex-content__header__popup__title,
 html[data-theme="dark"] .geex-content__header__popup__header,
 html[data-theme="dark"] .geex-content__header__popup__footer {
-  background: var(--dark-color);
-  color: var(--grayThree-color);
-  border-color: var(--desc-color);
+  background: #3885C9;
+  color: #FFF;
+  border-color: #FFF;
 }
 
 html[data-theme="dark"] .geex-content__invoice .geex-content__todo__list__single {

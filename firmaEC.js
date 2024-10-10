@@ -1,7 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('uploadSignatureButton').addEventListener('click', uploadSignature);
-    //loadSignatures();
+    const uploadSignatureButton = document.getElementById('uploadSignatureButton');
+    
+    if (uploadSignatureButton) {
+        uploadSignatureButton.addEventListener('click', uploadSignature);
+    }
+
+    // Código para obtener datos de 'setting.php'
+    fetch('../setting.php')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("firmas").innerText = data.cantidad;
+        })
+        .catch(error => {
+            // console.error('Error al obtener el perfil del usuario:', error);
+        });
 });
+
 
 function openTab(tabName) {
     var i, tabcontent;
@@ -30,7 +44,6 @@ function showUserProfile() {
 }
 
 function changePassword() {
-
     openTab('changePasswordForm');
 }
 
@@ -40,38 +53,24 @@ function submitChangePassword() {
     var confirmNewPassword = document.getElementById('confirmNewPassword').value;
 
     if (newPassword !== confirmNewPassword) {
-
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Las nuevas contraseñas no coinciden",
-            footer: ''
-          });
+        // alert("Las nuevas contraseñas no coinciden");
+        Swal.fire(`Las nuevas contraseñas no coinciden!`, "", "error");
         return;
     }
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '../changePassword.php', true);
+    xhr.open('POST', 'changePassword.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
         if (xhr.status === 200) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Contraseña cambiada exitosamente",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              setTimeout(() => {
-                window.location.reload();
-            }, 1000);
+            // alert(xhr.responseText); 
+            Swal.fire(`${xhr.responseText}!`, "", "success");
+            if (xhr.responseText === "Contraseña cambiada exitosamente") {
+                openTab('perfil'); 
+            }
         } else {
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Error al cambiar la contraseña",
-            footer: ''
-          });
+            // alert('Error al cambiar la contraseña');
+            Swal.fire(`Error al cambiar la contraseña!`, "", "error");
         }
     };
     xhr.send('currentPassword=' + encodeURIComponent(currentPassword) +
@@ -326,5 +325,3 @@ function signPDF() {
 }
 
 openTab('firmar');
-
-

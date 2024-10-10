@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", function () {
-  loadSignatures();
-  //loadSignatures_firmador();
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//   loadSignatures();
+//   //loadSignatures_firmador();
+// });
 
 
 

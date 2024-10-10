@@ -6,6 +6,12 @@ session_start();
 
 <?php include './partials/head.php' ?>
 
+<script>
+    window.onload = function() {
+		loadSignatures();
+    };
+</script>
+
 <body class="geex-dashboard">
 
     <?php include './partials/header.php' ?>
@@ -56,7 +62,7 @@ session_start();
 									<div class="geex-content__header__popup__content">
 										<ul class="geex-content__header__popup__items">
 											<li class="geex-content__header__popup__item">
-												<a class="geex-btn__add-modal_password">
+												<a class="geex-btn__add-modal_password ">
 													<i class="uil uil-user"></i>
 													Cambiar Contraseña
 												</a>
@@ -64,7 +70,7 @@ session_start();
 										</ul>
 									</div>
 									<div class="geex-content__header__popup__footer">
-										<a onclick="logout()" class="geex-content__header__popup__footer__link">
+										<a onclick="logout()" class="geex-content__header__popup__footer__link geex-btn geex-btn--primary">
 											<i class="uil uil-arrow-up-left"></i>Cerrar Sesión
 										</a>
 									</div>

@@ -6215,8 +6215,15 @@ fieldset:disabled .btn {
 	position: relative;
 	width: 100%;
 	overflow: hidden;
+	margin-top: -30px !important;
 }
 
+.geex-content__header__popup__header__img{
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	
+}
 .carousel-inner::after {
 	display: block;
 	clear: both;

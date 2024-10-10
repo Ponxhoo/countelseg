@@ -43,33 +43,31 @@
                                     <img class="user-img" src="assets/img/avatar/profile.png" alt="user" />
                                 </a>
                                 <div class="geex-content__header__popup geex-content__header__popup--author">
-                                    <div class="geex-content__header__popup__header">
-                                        <div class="geex-content__header__popup__header__img">
-                                            <img src="assets/img/avatar/profile.png" alt="user" />
-                                        </div>
-                                        <div class="geex-content__header__popup__header__content">
-                                            <h3 class="geex-content__header__popup__header__title">Mahabub Alam</h3>
-                                            <span class="geex-content__header__popup__header__subtitle">CEO,
-                                                PixcelsThemes</span>
-                                        </div>
-                                    </div>
-                                    <div class="geex-content__header__popup__content">
-                                        <ul class="geex-content__header__popup__items">
-                                            <li class="geex-content__header__popup__item">
-                                                <a class="geex-content__header__popup__link" href="#">
-                                                    <i class="uil uil-user"></i>
-                                                    Profile
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <div class="geex-content__header__popup__footer">
-                                        <a href="#" class="geex-content__header__popup__footer__link">
-                                            <i class="uil uil-arrow-up-left"></i>Logout
-                                        </a>
-                                    </div>
-                                </div>
+									<div class="geex-content__header__popup__header">
+										<div class="geex-content__header__popup__header__img">
+											<img src="assets/img/avatar/profile.png" alt="user" />
+										</div>
+										<div class="geex-content__header__popup__header__content">
+											<h3 class="geex-content__header__popup__header__title">
+												<?php echo $_SESSION['user'] ?></h3>
+										</div>
+									</div>
+									<div class="geex-content__header__popup__content">
+										<ul class="geex-content__header__popup__items">
+											<li class="geex-content__header__popup__item">
+												<a class="geex-btn__add-modal_password ">
+													<i class="uil uil-user"></i>
+													Cambiar Contraseña
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="geex-content__header__popup__footer">
+										<a onclick="logout()" class="geex-content__header__popup__footer__link geex-btn geex-btn--primary">
+											<i class="uil uil-arrow-up-left"></i>Cerrar Sesión
+										</a>
+									</div>
+								</div>
                             </li>
                         </ul>
                     </div>
@@ -159,7 +157,39 @@
         </div>
         </div>
         </div>
+
+        <!-- Modal para cambiar contraseña -->
+		<div class="geex-content__modal__form" id="modal2">
+			<div class="geex-content__modal__form__header">
+				<h3 class="geex-content__modal__form__title">Cambiar contraseña</h3>
+				<button class="geex-content__modal__form__close">
+					<i class="uil-times"></i>
+				</button>
+			</div>
+			<!-- /<form class="geex-content__modal__form__wrapper"> -->
+			
+			<div class="geex-content__modal__form__item">
+				<input id="currentPassword" type="password" class="geex-content__modal__form__input"
+					placeholder="Contraseña actual" />
+			</div>
+			<div class="geex-content__modal__form__item">
+				<input id="newPassword" type="password"  class="geex-content__modal__form__input"
+					placeholder="Contraseña nueva" />
+			</div>
+			<div class="geex-content__modal__form__item">
+				<input id="confirmNewPassword" type="password"  class="geex-content__modal__form__input"
+					placeholder="Confirmar nueva contraseña" />
+			</div>
+
+			<div class="geex-content__modal__form__item">
+				<button onclick="submitChangePassword()" class="geex-content__modal__form__submit">Cambiar</button>
+			</div>
+			<!-- </form> -->
+		</div>
+        
     </main>
+
+    
 
     <!-- inject:js-->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
