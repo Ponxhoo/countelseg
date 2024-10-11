@@ -126,20 +126,20 @@ function uploadSignature() {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '../upload_signature.php', true);
         xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    var response = xhr.responseText.trim();
-                    // console.log('Respuesta del servidor:', response);
-                    Swal.fire("Firma subida correctamente!", "", "success");
-                    // Esperar 2 segundos (2000 ms) antes de recargar la página
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1000);
-                } else {
-                    console.error('Error al subir la firma electrónica:', xhr.status);
-                    Swal.fire("Error al comunicarse con el servidor. Estado!"+ xhr.status , "", "error");
-                }
-            }
+            // if (xhr.readyState === 4) {
+            //     if (xhr.status === 200) {
+            //         var response = xhr.responseText.trim();
+            //         // console.log('Respuesta del servidor:', response);
+            //         Swal.fire("Firma subida correctamente!", "", "success");
+            //         // Esperar 2 segundos (2000 ms) antes de recargar la página
+            //         setTimeout(() => {
+            //             window.location.reload();
+            //         }, 1000);
+            //     } else {
+            //         console.error('Error al subir la firma electrónica:', xhr.status);
+            //         Swal.fire("Error al comunicarse con el servidor. Estado!"+ xhr.status , "", "error");
+            //     }
+            // }
         };
         xhr.send(formData);
     };
@@ -323,5 +323,60 @@ function signPDF() {
         document.body.removeChild(link);
     }, 'application/pdf');
 }
+
+function load_notifications() {
+    fetch('../get_notifications.php')
+        .then(response => response.json())
+        .then(data => {
+            // Obtener las firmas y el conteo de firmas del JSON
+            var firmas = data.signatures;
+            var conteoFirmas = data.cantidad;
+
+            // Elementos del DOM donde se colocarán los datos
+            var listNoti = document.getElementById('list_noti');
+            var countNoti = document.getElementById('count_noti');
+
+            // Limpiar contenido previo
+            listNoti.innerHTML = '';
+
+            // Actualizar el conteo de notificaciones
+            countNoti.textContent = conteoFirmas;
+
+            // Generar el HTML para cada firma
+            for (var i = 0; i < firmas.length; i++) {
+                var firma = firmas[i];
+                
+                // Crear el elemento HTML para la firma
+                var firmaElement = document.createElement('li');
+                firmaElement.classList.add('geex-content__header__popup__item');
+                firmaElement.innerHTML = `
+                    <a class="geex-content__header__popup__link" href="#">
+                        <div class="geex-content__header__popup__item__img">
+                            <img src="assets/img/firma-digital copy.png" alt="Popup Img" class="" />
+                        </div>
+                        <div class="geex-content__header__popup__item__content">
+                            <h5 class="geex-content__header__popup__item__title">
+                                ${firma.signature_name} 
+                                <span class="geex-content__header__popup__item__time"></span>
+                            </h5>
+                            <div class="geex-content__header__popup__item__desc">
+                                Vencimiento: ${firma.validTo_time_t}
+                                <span class="geex-content__header__popup__item__count"></span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+
+                // Añadir la firma al contenedor de la lista de notificaciones
+                listNoti.appendChild(firmaElement);
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener las notificaciones:', error);
+        });
+}
+
+
+
 
 openTab('firmar');

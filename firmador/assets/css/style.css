@@ -12496,3 +12496,8 @@ html[dir="rtl"] .geex-content__todo__header__filter__sortby i {
   transition: transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
+
+.expiring-soon {
+  color: red;
+}
+
