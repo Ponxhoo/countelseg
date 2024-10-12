@@ -7,8 +7,9 @@ session_start();
 <?php include './partials/head.php' ?>
 
 <script>
+	var dias = <?php echo $_SESSION['dias'] ?>;
     window.onload = function() {
-		loadSignatures();
+		loadSignatures(dias);
     };
 </script>
 

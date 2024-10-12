@@ -16,6 +16,7 @@
         "knplabs/knp-paginator-bundle": "^5.9",
         "mobiledetect/mobiledetectlib": "^2.8",
         "phpoffice/phpspreadsheet": "^1.25",
+        "phpseclib/phpseclib": "*",
         "setasign/fpdi": "^2.0",
         "stof/doctrine-extensions-bundle": "^1.7",
         "symfony/apache-pack": "^1.0",

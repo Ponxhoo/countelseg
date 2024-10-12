@@ -7,7 +7,7 @@
             </span>
 
             <div class="account-input" data-validate="Campo requerido">
-                <select id="documentType" name="documentType">
+                <select  id="documentType" name="documentType">
                     <option value="" disabled selected>Seleccionar tipo de documento</option>
                     <option value="cedula">Cédula</option>
                     <option value="pasaporte">Pasaporte</option>
@@ -50,7 +50,7 @@
     </div>
     <div class="form-container sign-in-container">
         
-        <form action="#" id="sign-in-container">
+        <form  id="sign-in-container">
             <div class="hide" id="forgot">
                 <div class="enter-email">
                     <div class="enter-email-detail">
@@ -58,12 +58,17 @@
                         <p>Solo ingresa tu correo electrónico para recuperar tu contraseña</p>
                         <div class="account-input ">
                             <i class="far fa-envelope"></i>
-                            <input type="email" placeholder="Correo Electrónico" />
+                            <input type="text" id="cedula" name="cedula" placeholder="Cédula" />
+                        </div>
+                        <div class="account-input ">
+                            <i class="far fa-envelope"></i>
+                            <input id="email_recovery" name="email_recovery" type="email" placeholder="Correo Electrónico" />
                         </div>
                         <div class="">
-                            <button class="signIn-form-button">Enviar</button>
+                            <button  type="button" class="signIn-form-button" onclick="sendRecoveryCode()">Enviar</button>
                             <p id="slideup" style="cursor: pointer"><u>cerrar</u></p>
                         </div>
+
 
                     </div>
                 </div>
@@ -115,8 +120,10 @@
 </div>
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="script.js"></script>
 <script src="script_registro.js"></script>
+<script src="script_recovery.js"></script>
 
 
 
@@ -154,10 +161,7 @@
         font-family: 'Montserrat', sans-serif;
         height: 100vh;
         margin: -20px 0 50px;
-        /* background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="scale(0.8 0.8) translate(5 5)"><circle cx="50" cy="50" r="50" fill="%23FBCD44"/></g></svg>'), url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="scale(0.8 0.8) translate(5 5)"><path d="M 0 80 l 100 -80 v 100 z" fill="%23E35E6A"/></g></svg>'), var(--bg);
-  background-repeat: no-repeat;
-  background-position: bottom -150px left -70px, top -120px right -100px;
-  background-size: 500px, 380px, 100%; */
+       
         font-family: 'Montserrat', sans-serif;
         /* center the main element in the viewport */
         padding: 1rem 0;

@@ -59,7 +59,7 @@ function submitChangePassword() {
     }
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'changePassword.php', true);
+    xhr.open('POST', '../changePassword.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
         if (xhr.status === 200) {
@@ -126,20 +126,32 @@ function uploadSignature() {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '../upload_signature.php', true);
         xhr.onreadystatechange = function() {
-            // if (xhr.readyState === 4) {
-            //     if (xhr.status === 200) {
-            //         var response = xhr.responseText.trim();
-            //         // console.log('Respuesta del servidor:', response);
-            //         Swal.fire("Firma subida correctamente!", "", "success");
-            //         // Esperar 2 segundos (2000 ms) antes de recargar la página
-            //         setTimeout(() => {
-            //             window.location.reload();
-            //         }, 1000);
-            //     } else {
-            //         console.error('Error al subir la firma electrónica:', xhr.status);
-            //         Swal.fire("Error al comunicarse con el servidor. Estado!"+ xhr.status , "", "error");
-            //     }
-            // }
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    var response = xhr.responseText.trim();
+                    // console.log('Respuesta del servidor:', response);
+                    Swal.fire("Firma subida correctamente!", "", "success");
+                    // Esperar 2 segundos (2000 ms) antes de recargar la página
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2500);
+                } else {
+                    var response = xhr.responseText.trim();
+                    var jsonResponse = JSON.parse(response);
+                       if (jsonResponse.error) {
+                            // alert(jsonResponse.error);
+                            Swal.fire(`${jsonResponse.error}!`, "", "error"); 
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1600);
+                       }
+                       else{
+                        // console.error('Error al subir la firma electrónica:', xhr.status);
+                        Swal.fire("Error al comunicarse con el servidor. Estado!"+ xhr.status , "", "error");
+                       }
+                    
+                }
+            }
         };
         xhr.send(formData);
     };
@@ -335,12 +347,15 @@ function load_notifications() {
             // Elementos del DOM donde se colocarán los datos
             var listNoti = document.getElementById('list_noti');
             var countNoti = document.getElementById('count_noti');
+            var countNoti2 = document.getElementById('count_noti2');
+           
 
             // Limpiar contenido previo
             listNoti.innerHTML = '';
 
             // Actualizar el conteo de notificaciones
             countNoti.textContent = conteoFirmas;
+            countNoti2.textContent = conteoFirmas;
 
             // Generar el HTML para cada firma
             for (var i = 0; i < firmas.length; i++) {
@@ -349,14 +364,16 @@ function load_notifications() {
                 // Crear el elemento HTML para la firma
                 var firmaElement = document.createElement('li');
                 firmaElement.classList.add('geex-content__header__popup__item');
+                
+                // Crear el contenido de la firma
                 firmaElement.innerHTML = `
-                    <a class="geex-content__header__popup__link" href="#">
+                    <div class="geex-content__header__popup__link">
                         <div class="geex-content__header__popup__item__img">
                             <img src="assets/img/firma-digital copy.png" alt="Popup Img" class="" />
                         </div>
                         <div class="geex-content__header__popup__item__content">
-                            <h5 class="geex-content__header__popup__item__title">
-                                ${firma.signature_name} 
+                            <h5 class="geex-content__header__popup__item__title" style="cursor: pointer;">
+                                ${firma.signature_name}
                                 <span class="geex-content__header__popup__item__time"></span>
                             </h5>
                             <div class="geex-content__header__popup__item__desc">
@@ -364,8 +381,14 @@ function load_notifications() {
                                 <span class="geex-content__header__popup__item__count"></span>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 `;
+
+                // Añadir la funcionalidad de redirección al hacer clic en el h5
+                var firmaTitle = firmaElement.querySelector('.geex-content__header__popup__item__title');
+                firmaTitle.onclick = function() {
+                    window.location.href = 'firmas.php';
+                };
 
                 // Añadir la firma al contenedor de la lista de notificaciones
                 listNoti.appendChild(firmaElement);
@@ -375,6 +398,7 @@ function load_notifications() {
             console.error('Error al obtener las notificaciones:', error);
         });
 }
+
 
 
 

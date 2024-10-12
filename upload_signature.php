@@ -50,16 +50,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'emitido' => date('Y-m-d', $parsedCert['validFrom_time_t']),
             'fechaVencimiento' => date('Y-m-d', $parsedCert['validTo_time_t'])
         ];
+        // Asumiendo que $parsedCert['validTo_time_t'] es un timestamp
+        $expirationDate = $parsedCert['validTo_time_t'];
 
-        // Insertar los datos de la firma en la base de datos
-        $stmt = $pdo->prepare("INSERT INTO user_signatures (user_id, signature, signature_name, password,validTo_time_t) VALUES (:userId, :signature, :signatureName, :password,:validTo_time_t)");
-        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-        $stmt->bindParam(':signature', base64_encode($pkcs12Content), PDO::PARAM_STR); // Almacenar el archivo codificado en base64
-        $stmt->bindParam(':signatureName', $signatureData['nombre'], PDO::PARAM_STR);
-        $stmt->bindParam(':password', base64_encode($password), PDO::PARAM_STR);
-        $stmt->bindParam(':validTo_time_t', $signatureData['fechaVencimiento'], PDO::PARAM_STR);
-        $stmt->execute();
-        http_response_code(200);
+        // Obtener la fecha y hora actual en timestamp
+        $currentDate = time();
+
+     
+        // Verificar si la fecha ha caducado
+        if ($currentDate > $expirationDate) {
+            
+            http_response_code(500);
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'La fecha ha caducado.']);
+
+        } else {
+            //echo "<pre>"; echo print_r($parsedCert); echo "</pre>";
+
+
+           
+
+        //    // Insertar los datos de la firma en la base de datos
+            $stmt = $pdo->prepare("INSERT INTO user_signatures (user_id, signature, signature_name, password,validTo_time_t) VALUES (:userId, :signature, :signatureName, :password,:validTo_time_t)");
+            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+            $stmt->bindParam(':signature', base64_encode($pkcs12Content), PDO::PARAM_STR); // Almacenar el archivo codificado en base64
+            $stmt->bindParam(':signatureName', $signatureData['nombre'], PDO::PARAM_STR);
+            $stmt->bindParam(':password', base64_encode($password), PDO::PARAM_STR);
+            $stmt->bindParam(':validTo_time_t', $signatureData['fechaVencimiento'], PDO::PARAM_STR);
+            $stmt->execute();
+            http_response_code(200);
+
+        }
+
+
+        
+
+        
         // Enviar la respuesta JSON con los datos del certificado
         // header('Content-Type: application/json');
         // echo json_encode(['certificado' => $signatureData]);

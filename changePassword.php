@@ -34,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "Error al cambiar la contraseña";
                 }
             } else {
-                echo "La contraseña actual no es válida";
+                http_response_code(500);
+                // echo "La contraseña actual no es válida";
             }
         } else {
             echo "Usuario no encontrado";

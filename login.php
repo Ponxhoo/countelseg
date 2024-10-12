@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($password, $hashedPassword)) {
             $_SESSION['user_id'] = $user['id']; // Almacenar el ID del usuario en la sesión
             $_SESSION['user'] = $user['fullName']; // Almacenar el ID del usuario en la sesión
+            $_SESSION['dias']=10;
             echo "Login exitoso"; // Puedes devolver cualquier mensaje o dato que desees
         } else {
             echo "Error en las credenciales";

@@ -3,6 +3,7 @@
 
 <?php include './partials/head.php' ?>
 <script>
+   
     window.onload = function() {
         loadSignatures_firmador();
     };
@@ -79,9 +80,9 @@
                         <div class="geex-content__section geex-content__form "  style="width: 90%;"  >
                             <div class="geex-content__form__wrapper">
                                 <div class="geex-content__form__wrapper__item geex-content__form__left">
-                                    <div class="geex-content__todo__header__title">
+                                    <!-- <div class="geex-content__todo__header__title">
                                         <label for="firmas">Seleccione una firma</label>
-                                    </div>
+                                    </div> -->
                                     <div class="geex-content__core__action__select">
                                         <select class="asset_select" name="firmas" onchange="selectSignature(this.value)" id="firmas">
                                             

@@ -21,7 +21,7 @@ document.getElementById('registerBtn').addEventListener('click', function() {
             // Respuesta del servidor
             var response = xhr.responseText;
             console.log(response);
-            window.location.href = "index.html";
+            window.location.href = "index.php";
         }
     };
     xhr.send('documentType=' + encodeURIComponent(documentType) +

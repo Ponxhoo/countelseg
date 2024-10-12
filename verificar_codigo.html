@@ -14,57 +14,158 @@
     <link rel="stylesheet" href="vendor/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="css/util.css">
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #01182D, #004F8D); /* Degradado */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            margin: 0;
+        }
+        
+        .container-login100 {
+            width: 460px; /* Ancho del formulario */
+            max-width: 90%; /* Máximo ancho */
+            background-color: #fff; /* Color de fondo */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra */
+            padding: 20px; /* Espaciado interno */
+        }
+
+        .login100-form-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .wrap-input100 {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input100 {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input100:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .label-input100 {
+            position: absolute;
+            left: 15px;
+            top: 10px;
+            color: #999;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .input100:focus + .label-input100,
+        .input100:not(:placeholder-shown) + .label-input100 {
+            top: -10px;
+            font-size: 12px;
+            color: #007bff;
+        }
+
+        .login100-form-btn {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .login100-form-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .text-center {
+            margin-top: 20px;
+        }
+
+        .txt2 a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .txt2 a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 576px) {
+            .container-login100 {
+                padding: 20px; /* Reduce el padding en pantallas pequeñas */
+            }
+            .login100-form-title {
+                font-size: 20px; /* Reduce el tamaño de fuente en pantallas pequeñas */
+            }
+        }
+        .logo-lite {
+            width: 33%;
+  margin-left: 35%;
+  margin-bottom: 18px;
+        }
+    </style>
 </head>
-<body style="background-color: #666666;">
+<body>
 
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                <form id="verifyForm" class="login100-form validate-form">
-                    <span class="login100-form-title p-b-43">
-                        Verificar Código y Cambiar Contraseña
-                    </span>
-
-                    
-
-                    <div class="wrap-input100 validate-input" data-validate="Código de recuperación es requerido">
-                        <input class="input100" type="text" id="codigo" name="codigo">
-                        <span class="focus-input100"></span>
-                        <span class="label-input100">Código de Recuperación</span>
-                    </div>
-                    
-                    <div class="wrap-input100 validate-input" data-validate="Nueva contraseña es requerida" style="display: none;" id="nueva_contrasena_wrapper">
-                        <input class="input100" type="password" id="nueva_contrasena" name="nueva_contrasena">
-                        <span class="focus-input100"></span>
-                        <span class="label-input100">Nueva Contraseña</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Confirmar nueva contraseña es requerido" style="display: none;" id="confirmar_contrasena_wrapper">
-                        <input class="input100" type="password" id="confirmar_contrasena" name="confirmar_contrasena">
-                        <span class="focus-input100"></span>
-                        <span class="label-input100">Confirmar Nueva Contraseña</span>
-                    </div>
-
-                    <div class="container-login100-form-btn">
-                        <button type="button" id="verifyCodeButton" class="login100-form-btn">
-                            VERIFICAR CÓDIGO
-                        </button>
-                        <button type="button" id="changePasswordButton" class="login100-form-btn" style="display:none;">
-                            CAMBIAR CONTRASEÑA
-                        </button>
-                    </div>
-
-                    <div class="text-center p-t-46 p-b-20">
-                        <span class="txt2">
-                            <a href="index.html">Regresar al inicio de sesión</a>
-                        </span>
-                    </div>
-                </form>
-
-                <div class="login100-more" style="background-image: url('images/bg-01.jpg');">
+    <div >
+        <div>
+            <form id="verifyForm" class="login100-form validate-form">
+                <!-- <img class="logo-lite" src="images/Logo_oscuro.png"  alt="Header logo" />  -->
+                <span class="login100-form-title p-b-43">
+                    Verificar Código y Cambiar Contraseña
+                </span>
+                <div class="wrap-input100 validate-input" data-validate="Código de recuperación es requerido">
+                    <input class="input100" type="text" id="codigo" name="codigo" placeholder=" " required>
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">Código de Recuperación</span>
                 </div>
-            </div>
+                
+                <div class="wrap-input100 validate-input" data-validate="Nueva contraseña es requerida" style="display: none;" id="nueva_contrasena_wrapper">
+                    <input class="input100" type="password" id="nueva_contrasena" name="nueva_contrasena" placeholder=" " required>
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">Nueva Contraseña</span>
+                </div>
+    
+                <div class="wrap-input100 validate-input" data-validate="Confirmar nueva contraseña es requerido" style="display: none;" id="confirmar_contrasena_wrapper">
+                    <input class="input100" type="password" id="confirmar_contrasena" name="confirmar_contrasena" placeholder=" " required>
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">Confirmar Nueva Contraseña</span>
+                </div>
+    
+                <div class="container-login100-form-btn">
+                    <button type="button" id="verifyCodeButton" class="login100-form-btn">
+                        VERIFICAR CÓDIGO
+                    </button>
+                    <button type="button" id="changePasswordButton" class="login100-form-btn" style="display:none;">
+                        CAMBIAR CONTRASEÑA
+                    </button>
+                </div>
+    
+                <div class="text-center p-t-46 p-b-20">
+                    <span class="txt2">
+                        <a href="index.php">Regresar al inicio de sesión</a>
+                    </span>
+                </div>
+            </form>
+
         </div>
+        
     </div>
 
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>

@@ -48,12 +48,13 @@
                                             d="M4 20H10C10 20.5304 10.2107 21.0391 10.5858 21.4142C10.9609 21.7893 11.4696 22 12 22C12.5304 22 13.0391 21.7893 13.4142 21.4142C13.7893 21.0391 14 20.5304 14 20H20C20.2652 20 20.5196 19.8946 20.7071 19.7071C20.8946 19.5196 21 19.2652 21 19C21 18.7348 20.8946 18.4804 20.7071 18.2929C20.5196 18.1054 20.2652 18 20 18V11C20 8.87827 19.1571 6.84344 17.6569 5.34315C16.1566 3.84285 14.1217 3 12 3C9.87827 3 7.84344 3.84285 6.34315 5.34315C4.84285 6.84344 4 8.87827 4 11V18C3.73478 18 3.48043 18.1054 3.29289 18.2929C3.10536 18.4804 3 18.7348 3 19C3 19.2652 3.10536 19.5196 3.29289 19.7071C3.48043 19.8946 3.73478 20 4 20V20ZM6 11C6 9.4087 6.63214 7.88258 7.75736 6.75736C8.88258 5.63214 10.4087 5 12 5C13.5913 5 15.1174 5.63214 16.2426 6.75736C17.3679 7.88258 18 9.4087 18 11V18H6V11Z"
                                             fill="#464255" />
                                     </svg>
-                                    <span class="geex-content__header__badge bg-info">2</span>
+                                    <span class="geex-content__header__badge bg-info" id="count_noti2"></span>
                                 </a>
                                 <div class="geex-content__header__popup geex-content__header__popup--notification">
                                     <h3 class="geex-content__header__popup__title">
                                         Notificación<span class="content__header__popup__title__count" id="count_noti">5</span>
                                     </h3>
+                                 
                                     <div class="geex-content__header__popup__content">
                                         <ul class="geex-content__header__popup__items" id="list_noti">
                                         </ul>
@@ -159,8 +160,9 @@
                                                 <path
                                                     d="M3 17.25V21h3.75l11.09-11.09-3.75-3.75L3 17.25zm17.71-12.04c.39-.39.39-1.02 0-1.41l-2.54-2.54c-.39-.39-1.02-.39-1.41 0l-2.34 2.34 3.75 3.75 2.54-2.54z" />
                                             </svg>
+                                            <a href="https://wa.me/593998000795">Solicitar Firma Electronica</a>
 
-                                            Solicitar Firma Electronica
+                                            
                                         </button>
                                     </td>
                                     <td>
@@ -170,8 +172,7 @@
                                                 <path
                                                     d="M17.65 6.35c-2.28-2.28-5.98-2.28-8.27 0-2.28 2.28-2.28 5.98 0 8.27 2.28 2.28 5.98 2.28 8.27 0 .29-.29.29-.77 0-1.06-.29-.29-.77-.29-1.06 0-1.84 1.84-4.82 1.84-6.66 0-1.84-1.84-1.84-4.82 0-6.66 1.84-1.84 4.82-1.84 6.66 0 .29.29.77.29 1.06 0 .29-.29.29-.77 0-1.06z" />
                                             </svg>
-
-                                            Renovar Firma Electronica
+                                            <a href="https://wa.me/593998000795">Renovar Firma Electronica</a>
                                         </button>
                                     </td>
                                     <td>
@@ -181,8 +182,7 @@
                                                 <path
                                                     d="M6 2v20l6-6 6 6V2H6zm4.5 14h-3v-2h3v2zm0-4h-3v-2h3v2zm7 4h-6v-2h6v2zm0-4h-6v-2h6v2z" />
                                             </svg>
-
-                                            Solicitar Facturación Electronica
+                                            <a href="https://wa.me/593998000795">Solicitar Facturación Electronica</a>
                                         </button>
                                     </td>
                                 </tr>

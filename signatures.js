@@ -54,8 +54,9 @@
 //     .catch((error) => console.error("Error:", error));
 // }
 
-function loadSignatures() {
-  fetch("../get_signatures.php")
+
+function loadSignatures(dias) {
+  fetch("../get_signatures.php?opc=1")
     .then((response) => response.json())
     .then((data) => {
       var signaturesList = document.getElementById("signaturesList");
@@ -70,15 +71,18 @@ function loadSignatures() {
         // Crear fila (tr)
         var signatureRow = document.createElement("tr");
 
-        // Verifica si la fecha de expiración es dentro de los próximos 10 días
         if (expirationDate) {
           var currentDate = new Date();
           var tenDaysLater = new Date();
-          tenDaysLater.setDate(currentDate.getDate() + 10);
+          tenDaysLater.setDate(currentDate.getDate() + dias);
 
-          // Si la fecha está dentro de los próximos 10 días, agregar clase para cambiar color de texto a rojo
-          if (expirationDate >= currentDate && expirationDate <= tenDaysLater) {
-            signatureRow.classList.add("expiring-soon"); // Clase CSS para poner el texto en rojo
+          // Verifica si la firma ya está caducada
+          if (expirationDate < currentDate) {
+            signatureRow.classList.add("expired"); // Clase CSS para poner el texto en rojo para firmas caducadas
+          }
+          // Verifica si la firma está por caducar dentro de los próximos "dias" días
+          else if (expirationDate >= currentDate && expirationDate <= tenDaysLater) {
+            signatureRow.classList.add("expiring-soon"); // Clase CSS para poner el texto en naranja para firmas que expiran pronto
           }
         }
 
@@ -107,7 +111,6 @@ function loadSignatures() {
             </svg>
             Eliminar
         </button> `;
-
         signatureRow.appendChild(actionCell);
 
         // Añadir la fila a la tabla
@@ -118,18 +121,20 @@ function loadSignatures() {
 }
 
 
+
+
 function loadSignatures_firmador() {
-  fetch("../get_signatures.php")
+  fetch("../get_signatures.php?opc=2")
     .then((response) => response.json())
     .then((data) => {
       const selectElement = document.getElementById("firmas");
       
-      // Limpiar opciones existentes
+      // Limpiar opciones existentesprof
       selectElement.innerHTML = "";
 
         const option1 = document.createElement("option");
         option1.value = ""; // Asignar el id como valor de la opción
-        option1.text = "Selecione una opcion"; // Asignar el nombre como el texto de la opción
+        option1.text = "Selecione una firma"; // Asignar el nombre como el texto de la opción
         selectElement.appendChild(option1);
 
       // Recorrer los datos y agregar cada firma como una opción

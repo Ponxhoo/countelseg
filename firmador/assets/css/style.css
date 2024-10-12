@@ -320,6 +320,7 @@ Sidebar
   max-width: 58%;
   margin-left: 40px;
   margin-bottom: -35px !important;
+  margin-top: -30px;
 }
 
 .geex-sidebar__close {
@@ -12497,7 +12498,13 @@ html[dir="rtl"] .geex-content__todo__header__filter__sortby i {
   transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
 
-.expiring-soon {
-  color: red;
+.expired td {
+  color: red; /* Color rojo para firmas caducadas */
 }
+
+.expiring-soon td {
+  color: orange; /* Color naranja para firmas que caducan pronto */
+}
+
+
 

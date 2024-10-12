@@ -1,6 +1,6 @@
 function sendRecoveryCode() {
     const cedula = document.getElementById('cedula').value;
-    const email = document.getElementById('email').value;
+    const email = document.getElementById('email_recovery').value;
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'send_recovery_code.php', true);
@@ -14,10 +14,22 @@ function sendRecoveryCode() {
                     alert(response.success);
                     window.location.href = 'verificar_codigo.html';  // Redirigir a la página de verificación
                 } else if (response.error) {
-                    alert(response.error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error...",
+                        text: response.error,
+                      
+                      });
+                    // alert(response.error);
                 }
             } else {
-                alert('Error: ' + xhr.status);
+                Swal.fire({
+                    icon: "error",
+                    title: "Error...",
+                    text: xhr.status,
+                    
+                  });
+                // alert('Error: ' + xhr.status);
             }
         }
     };

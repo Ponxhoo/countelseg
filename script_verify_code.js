@@ -15,19 +15,38 @@ function verifyCode() {
     .then(response => response.json())
     .then(data => {
         if (data.error) {
-            alert('Error: ' + data.error);
+            Swal.fire({
+                icon: "error",
+                title: "Error...",
+                text: data.error,
+                
+              });
+            // alert('Error: ' + data.error);
         } else if (data.success) {
             // Mostrar campos de nueva contraseña y confirmar contraseña
             document.getElementById('nueva_contrasena_wrapper').style.display = 'block';
             document.getElementById('confirmar_contrasena_wrapper').style.display = 'block';
             document.getElementById('changePasswordButton').style.display = 'block';
             document.getElementById('verifyCodeButton').style.display = 'none';
-            alert('Código verificado, ahora puede cambiar su contraseña.');
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Código verificado, ahora puede cambiar su contraseña.'",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            // alert('Código verificado, ahora puede cambiar su contraseña.');
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert('Ocurrió un error al verificar el código.');
+        Swal.fire({
+            icon: "error",
+            title: "Error...",
+            text: "Ocurrió un error al verificar el código.",
+            
+          });
+        // console.error('Error:', error);
+        // alert('Ocurrió un error al verificar el código.');
     });
 }
 
@@ -37,7 +56,13 @@ function changePassword() {
     const confirmarContrasena = document.getElementById('confirmar_contrasena').value;
 
     if (nuevaContrasena !== confirmarContrasena) {
-        alert('Las contraseñas no coinciden.');
+        Swal.fire({
+            icon: "error",
+            title: "Error...",
+            text: "Las contraseñas no coinciden.",
+            
+          });
+        // alert('Las contraseñas no coinciden.');
         return;
     }
 
@@ -57,15 +82,34 @@ function changePassword() {
     .then(response => response.json())
     .then(data => {
         if (data.error) {
-            alert('Error: ' + data.error);
+            Swal.fire({
+                icon: "error",
+                title: "Error...",
+                text: data.error,
+                
+              });
+            // alert('Error: ' + data.error);
         } else if (data.success) {
-            alert('Éxito: ' + data.success);
-            window.location.href = 'index.html';
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: data.success,
+                showConfirmButton: false,
+                timer: 1500
+              });
+            // alert('Éxito: ' + data.success);
+            window.location.href = 'index.php';
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert('Ocurrió un error al cambiar la contraseña.');
+        Swal.fire({
+            icon: "error",
+            title: "Error...",
+            text: "Ocurrió un error al cambiar la contraseña.",
+            
+          });
+        // console.error('Error:', error);
+        // alert('Ocurrió un error al cambiar la contraseña.');
     });
 }
 

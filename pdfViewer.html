@@ -63,7 +63,10 @@
         var pdfFile = urlParams.get('pdfFile');
 
         if (!pdfFile) {
-            alert("No se encontró el archivo PDF.");
+            //alert("No se encontró el archivo PDF.");
+
+            Swal.fire(`No se encontró el archivo PDF.`, "", "error");
+
             window.close();
         }
 
@@ -216,7 +219,8 @@
 
     document.getElementById('done').addEventListener('click', async function() {
         if (!selectedSignature) {
-            alert("Por favor, asegúrese de haber seleccionado una firma.");
+            // alert("Por favor, asegúrese de haber seleccionado una firma.");
+            Swal.fire(`Por favor, asegúrese de haber seleccionado una firma.`, "", "error");
             return;
         }
 
@@ -368,10 +372,15 @@
             
             } catch (error) {
                 console.error('Error durante el proceso de firma:', error);
-                alert('Ocurrió un error durante el proceso de firma. Por favor, intenta nuevamente.');
+                // alert('Ocurrió un error durante el proceso de firma. Por favor, intenta nuevamente.');
+                Swal.fire(`Ocurrió un error durante el proceso de firma. Por favor, intenta nuevamente.`, "", "error");
             }
         } else {
-            alert("Por favor, selecciona las coordenadas para el QR y la firma.");
+
+            // alert("Por favor, selecciona las coordenadas para el QR y la firma.");
+            Swal.fire(`Por favor, selecciona las coordenadas para el QR y la firma.`, "", "error");
+
+            
         }
     });
 });

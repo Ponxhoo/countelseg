@@ -3,14 +3,7 @@ require_once 'db.php';
 session_start();
 
 $userId = $_SESSION['user_id'];
-
-// SELECT COUNT(*) 
-// FROM user_signatures as cantidad
-// WHERE validTo_time_t BETWEEN CURDATE() AND (CURDATE() + INTERVAL 10 DAY);
-
-
-// select signature_name, validTo_time_t FROM user_signatures 
-// WHERE validTo_time_t BETWEEN CURDATE() AND (CURDATE() + INTERVAL 10 DAY);
+$dias = $_SESSION['dias'];
 
 
 try {
@@ -18,7 +11,7 @@ try {
     $countQuery = $pdo->prepare("
         SELECT COUNT(*) as cantidad 
         FROM user_signatures 
-        WHERE validTo_time_t BETWEEN CURDATE() AND (CURDATE() + INTERVAL 190 DAY)
+        WHERE validTo_time_t BETWEEN CURDATE() AND (CURDATE() + INTERVAL $dias DAY)
     ");
     $countQuery->execute();
     $countResult = $countQuery->fetch(PDO::FETCH_ASSOC); // Obtenemos el resultado de la cuenta
@@ -27,7 +20,7 @@ try {
     $signaturesQuery = $pdo->prepare("
         SELECT signature_name, validTo_time_t 
         FROM user_signatures 
-        WHERE validTo_time_t BETWEEN CURDATE() AND (CURDATE() + INTERVAL 10 DAY)
+        WHERE validTo_time_t BETWEEN CURDATE() AND (CURDATE() + INTERVAL $dias DAY)
     ");
     $signaturesQuery->execute();
     $signaturesResult = $signaturesQuery->fetchAll(PDO::FETCH_ASSOC); // Obtenemos el listado de firmas
