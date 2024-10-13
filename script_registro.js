@@ -1,5 +1,21 @@
 document.getElementById('registerBtn').addEventListener('click', function() {
-    var documentType = document.getElementById('documentType').value;
+    var cedula = document.getElementById('cedula_reg');
+    var pasaporte = document.getElementById('pasaporte_reg');
+     
+    if (cedula.checked) {
+        var documentType='cedula';
+    }else{
+        if (pasaporte.checked) {
+            var documentype='pasaporte';
+        }
+    }
+
+    // Obtener 
+    // var documentType = document.getElementById('documentType').value;
+    // verifica si el radio con id decula esta checked 
+    // entonces documentype es cedula
+    // sino es pasaport
+
     var documentId = document.getElementById('documentId').value;
     var fullName = document.getElementById('fullName').value;
     var username = document.getElementById('username').value;

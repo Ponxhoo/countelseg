@@ -33,7 +33,7 @@
 							<a href="firmar.php" class="geex-sidebar__menu__link">Firmar Documento</a>
 						</li>
 						<li class="geex-sidebar__menu__item">
-							<a href="validar.php" class="geex-sidebar__menu__link">Validador de firmas</a>
+							<a href="validar.php" class="geex-sidebar__menu__link">Validar Documentos</a>
 						</li>
 
 					</ul>

@@ -11,7 +11,13 @@ function sendRecoveryCode() {
             if (xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
                 if (response.success) {
-                    alert(response.success);
+                    Swal.fire({
+                        icon: "success",
+                        title: "success...",
+                        text: response.success,
+                      
+                      })
+                  //  alert(response.success);
                     window.location.href = 'verificar_codigo.html';  // Redirigir a la página de verificación
                 } else if (response.error) {
                     Swal.fire({

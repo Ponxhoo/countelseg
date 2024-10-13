@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <div class="container" id="container">
     <div class="form-container sign-up-container">
 
@@ -6,16 +8,20 @@
                 Registro de Usuario
             </span>
 
+            
             <div class="account-input" data-validate="Campo requerido">
-                <select  id="documentType" name="documentType">
-                    <option value="" disabled selected>Seleccionar tipo de documento</option>
-                    <option value="cedula">Cédula</option>
-                    <option value="pasaporte">Pasaporte</option>
-                </select>
-                <span class="focus-input100"></span>
-            </div>
+                <label class="document-type-label">Tipo de documento:</label>
+             
 
+                <input type="radio" class="account-input" id="cedula_reg" name="documentType"  />
+                <label for="cedula_reg">Cédula</label>
+
+                <input type="radio" class="account-input" id="pasaporte_reg" name="documentType"  />
+                <label for="pasaporte_reg" >Pasaporte</label>
+            </div>
             <div class="account-input" data-validate="Campo requerido">
+
+
                 <input type="text" id="documentId" name="documentId" placeholder="Número de documento">
                 <span class="focus-input100"></span>
             </div>
@@ -49,8 +55,8 @@
 
     </div>
     <div class="form-container sign-in-container">
-        
-        <form  id="sign-in-container">
+
+        <form id="sign-in-container">
             <div class="hide" id="forgot">
                 <div class="enter-email">
                     <div class="enter-email-detail">
@@ -65,7 +71,7 @@
                             <input id="email_recovery" name="email_recovery" type="email" placeholder="Correo Electrónico" />
                         </div>
                         <div class="">
-                            <button  type="button" class="signIn-form-button" onclick="sendRecoveryCode()">Enviar</button>
+                            <button type="button" class="signIn-form-button" onclick="sendRecoveryCode()">Enviar</button>
                             <p id="slideup" style="cursor: pointer"><u>cerrar</u></p>
                         </div>
 
@@ -86,12 +92,12 @@
             </div>
             <p class="forgot" id="slidedown"> ¿Olvidaste tu contraseña? </p>
             <!-- <button class="signIn-form-button">Iniciar Sesión</button> -->
-            
+
             <button type="button" id="loginBtn" class="login100-form-btn">
                 Iniciar sesión
             </button>
         </form>
-        
+
     </div>
     <div class="overlay-container">
         <div class="overlay">
@@ -136,6 +142,44 @@
     * {
         box-sizing: border-box;
     }
+    .custom-select-container {
+    position: relative; /* Para el posicionamiento del pseudo-elemento */
+    margin-bottom: 20px; /* Espacio inferior */
+}
+.document-type-label {
+    display: block; /* Asegúrate de que el texto del label sea visible */
+    margin-bottom: 10px; /* Espacio entre el label y las opciones */
+    font-size: 14px; /* Tamaño de fuente */
+    font-family: 'Montserrat', sans-serif;
+    color: #333; /* Color del texto */
+    margin-top: 30px;
+}
+
+.radio-group {
+    display: ruby;/* Alinea las opciones en línea */
+    flex-direction: column; /* Alineación vertical */
+}
+
+.radio-option {
+    display: flex; /* Flexbox para alinear el radio button y el label */
+    align-items: center; /* Centra verticalmente */
+    margin-bottom: 10px; /* Espacio entre opciones */
+}
+
+.radio-input {
+    display: none; /* Oculta el radio button */
+}
+
+.radio-label {
+    position: relative; /* Posiciona el label */
+    padding-left: 35px; /* Espacio a la izquierda para el icono del radio */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el label */
+    font-size: 13px; /* Tamaño de fuente */
+    color: #666; /* Color del texto */
+    transition: color 0.3s ease; /* Transición de color */
+}
+
+
 
 
 
@@ -161,7 +205,7 @@
         font-family: 'Montserrat', sans-serif;
         height: 100vh;
         margin: -20px 0 50px;
-       
+
         font-family: 'Montserrat', sans-serif;
         /* center the main element in the viewport */
         padding: 1rem 0;
@@ -282,14 +326,48 @@
     .container {
         background-color: #fff;
         border-radius: 10px;
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-            0 10px 10px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
         position: relative;
         overflow: hidden;
         width: 768px;
         max-width: 100%;
         min-height: 480px;
     }
+
+    @media only screen and (max-width: 768px) {
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            position: relative !important;
+            overflow: hidden;
+            width: 100%;
+            /* Ajusta el ancho para móviles */
+            max-width: 100%;
+            min-height: 911px !important;
+            overflow-x: hidden;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .container.right-panel-active .overlay-right {
+            transform: translateY(180%);
+            right: -20px;
+            height: 85%;
+            top: 30%;
+            display: none;
+        }
+    }
+
+    .login100-form-title {
+        font-size: 23px;
+        margin-bottom: 15px;
+        font-family: 'Montserrat', sans-serif;
+        color: #01182d;
+        font-weight: bold;
+        margin-bottom: 27px;
+    }
+
 
     .form-container {
         position: absolute;
@@ -1397,12 +1475,12 @@
 
 <script>
     // Cerrar el formulario de recuperación de contraseña
-    document.getElementById('slideup').addEventListener('click', function () {
+    document.getElementById('slideup').addEventListener('click', function() {
         document.getElementById('forgot').classList.add('hide');
     });
 
     // Abrir el formulario de recuperación de contraseña
-    document.getElementById('slidedown').addEventListener('click', function () {
+    document.getElementById('slidedown').addEventListener('click', function() {
         document.getElementById('forgot').classList.remove('hide');
     });
 
