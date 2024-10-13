@@ -6,6 +6,8 @@
    
     window.onload = function() {
         loadSignatures_firmador();
+        // Limpiar solo la variable 'selectedSignature'
+        localStorage.removeItem("selectedSignature");
     };
 </script>
 
@@ -80,19 +82,22 @@
                         <div class="geex-content__section geex-content__form "  style="width: 90%;"  >
                             <div class="geex-content__form__wrapper">
                                 <div class="geex-content__form__wrapper__item geex-content__form__left">
-                                    <!-- <div class="geex-content__todo__header__title">
-                                        <label for="firmas">Seleccione una firma</label>
-                                    </div> -->
+                                   
+                                    
                                     <div class="geex-content__core__action__select">
+                                        <h4 class="geex-content__modal__form__title" id="lbl_texto"></h4>
+                                        <br>
                                         <select class="asset_select" name="firmas" onchange="selectSignature(this.value)" id="firmas">
-                                            
                                         </select>
+                                      
                                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
                                             <path d="M13.9873 19.217C13.7177 19.2146 13.4596 19.1076 13.2674 18.9186L3.08562 8.73681C2.90015 8.54478 2.79752 8.28759 2.79984 8.02062C2.80216 7.75366 2.90924 7.49829 3.09802 7.30951C3.2868 7.12073 3.54217 7.01365 3.80914 7.01133C4.0761 7.00901 4.3333 7.11164 4.52533 7.29711L13.9873 16.7591L23.4493 7.29711C23.5432 7.19986 23.6555 7.12229 23.7798 7.06893C23.904 7.01557 24.0376 6.98748 24.1728 6.98631C24.308 6.98513 24.442 7.01089 24.5672 7.06209C24.6923 7.11328 24.806 7.18889 24.9016 7.28449C24.9972 7.38009 25.0728 7.49377 25.124 7.6189C25.1752 7.74403 25.2009 7.8781 25.1998 8.0133C25.1986 8.14849 25.1705 8.2821 25.1171 8.40632C25.0638 8.53054 24.9862 8.64289 24.889 8.73681L14.7071 18.9186C14.515 19.1076 14.2568 19.2146 13.9873 19.217Z" fill="#AB54DB" />
                                         </svg>
                                     </div>
                                 </div>
                             </div>
+                           <br>
+                            <label for="texto_adicional"> <h4>Documento</h4></label>
 
                             <div class="geex-content__invoice__chat__amount">
                                 <label for="invoice_amount">
@@ -103,7 +108,16 @@
                                     </svg>
 
                                 </label>
-                                <input type="file" id="pdfFile" name="pdfFile" />
+                            <br>
+                                <input type="file" id="pdfFile" name="pdfFile" style="font-size: revert;"  />
+                            </div>
+                            <br>
+                            <br>
+                            <label for="texto_adicional"> <h4>Texto Adicional</h4></label>
+
+                            <div class="geex-content__invoice__chat__amount">
+                               
+                                <input type="text" id="texto_adicional" name="texto_adicional" />
                             </div>
 
                             <div class="geex-content__invoice__chat__content">

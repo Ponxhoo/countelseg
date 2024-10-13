@@ -62,6 +62,8 @@
         var urlParams = new URLSearchParams(window.location.search);
         var pdfFile = urlParams.get('pdfFile');
 
+        console.log('Archivo PDF:', pdfFile);
+
         if (!pdfFile) {
             //alert("No se encontró el archivo PDF.");
 
@@ -230,7 +232,7 @@
 
                 const fechaActual = new Date();
                 const fechaFirma = `${fechaActual.getFullYear()}-${('0' + (fechaActual.getMonth() + 1)).slice(-2)}-${('0' + fechaActual.getDate()).slice(-2)} ${('0' + fechaActual.getHours()).slice(-2)}:${('0' + fechaActual.getMinutes()).slice(-2)}:${('0' + fechaActual.getSeconds()).slice(-2)} -05:00`;
-                console.log('Fecha de firma:', fechaFirma);
+               
 
                 const dataForQR = {
                     nombre: selectedSignature.signature_name,
@@ -276,6 +278,8 @@
                     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
                     pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+                    const texto_adi = parent.document.getElementById('texto_adicional').value;
+                    console.log('Texto adicional:', texto_adi);
 
                     if (i === selectedCoordinates.page) {
                         const qrWidth = 10;
@@ -292,13 +296,20 @@
                         pdf.text(dataForQR.nombre, textX, textY + 2.8);
                         pdf.text('Fecha:', textX, textY + 5.4);
                         pdf.text(dataForQR.fechaFirma, textX, textY + 7.8);
+                        pdf.text(texto_adi, textX, textY + 10.4);
                     }
                 }
 
                 const pdfData = pdf.output('datauristring');
                 const pdfBase64 = pdfData.split(',')[1];
                 password_deco = atob(selectedSignature.password);
+                
 
+                const fileInput = parent.document.getElementById('pdfFile');
+                
+                const file = fileInput.files[0];
+                var nombre_archivo = file.name;
+                console.log('Nombre del archivo:', nombre_archivo);
 
                 const formData = new FormData();
                 formData.append('signatureFileBase64', selectedSignature.signature);
@@ -309,12 +320,16 @@
                 formData.append('pagina', selectedCoordinates.page);
                 formData.append('tipoEstampado', 'N');
                 formData.append('razon', selectedSignature.razon);
+                formData.append('nombre_archivo', nombre_archivo);
+                
+               
 
-                const response = await fetch('sign_pdf.php', {
+                const response = await fetch('sign_pdf2.php', {
                     method: 'POST',
                     body: formData
                 });
-
+                 console.log('Respuesta del servidor:', response);
+                
                 if (!response.ok) {
                     const errorMessage = `Error del servidor: ${response.status}. Detalles: ${await response.text()}`;
                     throw new Error(errorMessage);
@@ -329,45 +344,16 @@
 
                 const signedPdfUrl = `data:application/pdf;base64,${responseData.documentoFirmado}`;
                 const downloadLink = document.getElementById('download');
+                // Cambiar el texto del enlace
+                const fileName = responseData.nombre_documentoFirmado; // Nombre del archivo dinámico
+                // Cambiar el atributo 'download' para que apunte al nuevo archivo
+                downloadLink.setAttribute('download', fileName);
                 downloadLink.href = signedPdfUrl;
                 downloadLink.style.display = 'block';
                 downloadLink.click();
 
 
-                // Swal.fire({
-                //     title: "Quiere firmar otra vez el documento?",
-                //     showDenyButton: true,
-                //     showCancelButton: true,
-                //     confirmButtonText: "Si, firmar de nuevo",
-                //     denyButtonText: `Descargar el documento`
-                //     }).then((result) => {
-                //     /* Read more about isConfirmed, isDenied below */
-                //     if (result.isConfirmed) {
-                //         Swal.fire("Saved!", "", "success");
-
-                //         var pdf = responseData.url_documentoFirmado;
-                //         console.log('URL del documento PDF:', pdf);
-
-                //         if (pdf) {
-                //             // Asigna la URL directamente al iframe
-                //             var viewerFrame = document.getElementById('pdfViewerFrame');
-                //             viewerFrame.src = pdf; // Ya tienes la URL directa del PDF
-
-                //             // Muestra el contenedor y el iframe para el visor de PDF
-                //             var pdfViewerContainer = document.getElementById('pdfViewerContainer');
-                //             pdfViewerContainer.style.display = 'block';
-                //         } else {
-                //             alert("No se encontró la URL del documento PDF.");
-                //         }
-
-                        
-                //     } else if (result.isDenied) {
-                        
-                //         Swal.fire("PDF generado y firmado con éxito.!", "", "success");
-
-                    
-                //     }
-                //     });
+              
 
             
             } catch (error) {
