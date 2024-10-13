@@ -349,7 +349,6 @@ function load_notifications() {
             var countNoti = document.getElementById('count_noti');
             var countNoti2 = document.getElementById('count_noti2');
            
-
             // Limpiar contenido previo
             listNoti.innerHTML = '';
 
@@ -365,6 +364,17 @@ function load_notifications() {
                 var firmaElement = document.createElement('li');
                 firmaElement.classList.add('geex-content__header__popup__item');
                 
+                // Determinar el color del texto según el estado
+                var vencimientoColor = '';
+                if (firma.status === '1') {
+                    vencimientoColor = 'color: red !important;';  // Caducado
+                    caduca = 'Firma caducada';
+                } else if (firma.status === '2') {
+                    vencimientoColor = 'color: orange !important;';  // Por caducar
+                    caduca = 'Vencimiento';
+                }
+            
+
                 // Crear el contenido de la firma
                 firmaElement.innerHTML = `
                     <div class="geex-content__header__popup__link">
@@ -376,8 +386,8 @@ function load_notifications() {
                                 ${firma.signature_name}
                                 <span class="geex-content__header__popup__item__time"></span>
                             </h5>
-                            <div class="geex-content__header__popup__item__desc">
-                                Vencimiento: ${firma.validTo_time_t}
+                            <div class="geex-content__header__popup__item__desc" style="${vencimientoColor}">
+                                 ${caduca}: ${firma.validTo_time_t}
                                 <span class="geex-content__header__popup__item__count"></span>
                             </div>
                         </div>
@@ -398,6 +408,7 @@ function load_notifications() {
             console.error('Error al obtener las notificaciones:', error);
         });
 }
+
 
 
 

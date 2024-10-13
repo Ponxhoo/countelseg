@@ -97,7 +97,8 @@ function loadSignatures_firmador() {
 
 
 function selectSignature(id) {
-  // var signatureId = event.target.getAttribute("data-id");
+  
+  localStorage.removeItem("selectedSignature");
 
   fetch("../get_signature_by_id.php?id=" + id)
     .then((response) => response.json())

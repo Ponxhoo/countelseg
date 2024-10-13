@@ -109,7 +109,9 @@
 
                                 </label>
                             <br>
-                                <input type="file" id="pdfFile" name="pdfFile" style="font-size: revert;"  />
+                          
+                                <input type="file" id="pdfFile" name="pdfFile" style="font-size: revert;" accept="application/pdf" />
+
                             </div>
                             <br>
                             <br>
