@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Visor de PDF con QR y Firma Digital</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
         }
+
         #the-canvas {
             display: block;
             margin: auto;
@@ -20,6 +23,7 @@
             max-height: calc(100% - 60px);
             border: 1px solid #000;
         }
+
         #controls {
             position: fixed;
             bottom: 0;
@@ -28,21 +32,25 @@
             text-align: center;
             padding: 10px;
         }
-        #page_num, #page_count {
+
+        #page_num,
+        #page_count {
             margin: 0 10px;
         }
+
         #download {
-            display: none; 
+            display: none;
         }
     </style>
 </head>
+
 <body>
     <canvas id="the-canvas"></canvas>
     <div id="controls">
-        <button id="prev" class="geex-btn geex-btn--primary" >Anterior</button>
+        <button id="prev" class="geex-btn geex-btn--primary">Anterior</button>
         <span Error al cambiar la contraseña>Página: <span id="page_num"></span> / <span id="page_count"></span></span>
-        <button id="next" class="geex-btn geex-btn--primary" >Siguiente</button>
-        <button id="done" class="geex-btn geex-btn--success" >Firmar y descargar</button>
+        <button id="next" class="geex-btn geex-btn--primary">Siguiente</button>
+        <button id="done" class="geex-btn geex-btn--success">Firmar y descargar</button>
         <a id="download" href="#" download="documento_firmado.pdf"></a>
     </div>
 
@@ -85,7 +93,7 @@
 
         function renderPage(num) {
             pageRendering = true;
-            pdfDoc.getPage(num).then(function(page) {
+            pdfDoc.getPage(num).then(function (page) {
                 var viewport = page.getViewport({ scale: scale });
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
@@ -96,7 +104,7 @@
                 };
                 var renderTask = page.render(renderContext);
 
-                renderTask.promise.then(function() {
+                renderTask.promise.then(function () {
                     pageRendering = false;
                     if (pageNumPending !== null) {
                         renderPage(pageNumPending);
@@ -139,7 +147,8 @@
 
         document.getElementById('next').addEventListener('click', onNextPage);
 
-        pdfjsLib.getDocument(pdfFile).promise.then(function(pdfDoc_) {
+        pdfjsLib.getDocument(pdfFile).promise.then(function (pdfDoc_) {
+
             pdfDoc = pdfDoc_;
             document.getElementById('page_count').textContent = pdfDoc.numPages;
             renderPage(pageNum);
@@ -169,7 +178,7 @@
             ctx.stroke();
         }
 
-        canvas.addEventListener("mousedown", function(e) {
+        canvas.addEventListener("mousedown", function (e) {
             getMousePosition(canvas, e);
         });
 
@@ -179,198 +188,242 @@
                 if (!response.ok) {
                     throw new Error('Error al obtener el nombre del último certificado.');
                 }
-                
+
                 const data = await response.json();
                 if (!data.success) {
                     throw new Error(data.message || 'Error desconocido al obtener el certificado.');
                 }
 
-                return data; 
+                return data;
             } catch (error) {
                 console.error('Error al obtener el nombre del último certificado:', error);
-                throw error; 
+                throw error;
             }
         }
+
+        // async function generateQRCode(data) {
+
+        //     return new Promise((resolve, reject) => {
+
+        //         try {
+        //             const qr = new QRCode(document.createElement('div'), {
+        //                 text: `Firmado por: ${data.nombre}, Fecha: ${data.fechaFirma}`,
+        //                 width: 256,
+        //                 height: 256,
+        //                 correctLevel: QRCode.CorrectLevel.H, // Incrementamos el nivel de corrección de errores para mejorar la capacidad de datos
+        //                 version: 40 // Aumentamos la versión para aceptar más caracteres
+        //             });
+
+        //             qr._oDrawing._elImage.onload = function () {
+        //                 resolve(qr._oDrawing._elImage);
+        //             };
+
+        //             qr._oDrawing._elImage.onerror = function (err) {
+        //                 reject(err);
+        //             };
+        //         } catch (error) {
+        //             reject(error);
+        //         }
+        //     });
+        // }
 
         async function generateQRCode(data) {
-            return new Promise((resolve, reject) => {
-                try {
-                    const qr = new QRCode(document.createElement('div'), {
-                        text: `Firmado por: ${data.nombre}, Fecha: ${data.fechaFirma}`,
-                        width: 256,
-                        height: 256,
-                        correctLevel: QRCode.CorrectLevel.H, // Incrementamos el nivel de corrección de errores para mejorar la capacidad de datos
-                        version: 40 // Aumentamos la versión para aceptar más caracteres
-                    });
-
-                    qr._oDrawing._elImage.onload = function() {
-                        resolve(qr._oDrawing._elImage);
-                    };
-
-                    qr._oDrawing._elImage.onerror = function(err) {
-                        reject(err);
-                    };
-                } catch (error) {
-                    reject(error);
-                }
+    return new Promise((resolve, reject) => {
+        try {
+            const tempDiv = document.createElement('div');
+            const qr = new QRCode(tempDiv, {
+                text: `Firmado por: ${data.nombre}, Fecha: ${data.fechaFirma}`,
+                width: 256,
+                height: 256,
+                correctLevel: QRCode.CorrectLevel.H, // Mayor nivel de corrección de errores
+                version: 40 // Versión que permite más datos
             });
-        }
 
-       document.addEventListener('DOMContentLoaded', () => {
-    const selectedSignature = JSON.parse(localStorage.getItem('selectedSignature'));
+            // Usa un setTimeout para dar tiempo a que el QR code se genere completamente
+            setTimeout(() => {
+                // Extrae el canvas del elemento generado
+                const canvas = tempDiv.querySelector('canvas');
 
-    document.getElementById('done').addEventListener('click', async function() {
-        if (!selectedSignature) {
-            // alert("Por favor, asegúrese de haber seleccionado una firma.");
-            Swal.fire(`Por favor, asegúrese de haber seleccionado una firma.`, "", "error");
-            return;
-        }
-
-        if (selectedCoordinates) {
-            try {
-                console.log('Iniciando proceso de firma...');
-
-                const fechaActual = new Date();
-                const fechaFirma = `${fechaActual.getFullYear()}-${('0' + (fechaActual.getMonth() + 1)).slice(-2)}-${('0' + fechaActual.getDate()).slice(-2)} ${('0' + fechaActual.getHours()).slice(-2)}:${('0' + fechaActual.getMinutes()).slice(-2)}:${('0' + fechaActual.getSeconds()).slice(-2)} -05:00`;
-               
-
-                const dataForQR = {
-                    nombre: selectedSignature.signature_name,
-                    fechaFirma: fechaFirma,
-                    razon: selectedSignature.razon,
-                    localidad: selectedSignature.localidad
-                };
-                // console.log('Datos para el QR:', dataForQR);
-
-                const qrImg = await generateQRCode(dataForQR);
-                // console.log('QR generado con éxito:', qrImg);
-
-                const qrDataUrl = qrImg.src;
-                // console.log('URL de datos del QR:', qrDataUrl);
-
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF('p', 'mm', 'a4');
-
-                for (let i = 1; i <= pdfDoc.numPages; i++) {
-                    const page = await pdfDoc.getPage(i);
-                    const viewport = page.getViewport({ scale: scale });
-
-                    const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-
-                    const renderContext = {
-                        canvasContext: context,
-                        viewport: viewport
+                if (canvas) {
+                    // Convierte el canvas a una imagen para garantizar compatibilidad
+                    const image = new Image();
+                    image.src = canvas.toDataURL('image/png');
+                    
+                    image.onload = () => {
+                        resolve(image); // Resuelve con la imagen generada
                     };
 
-                    await page.render(renderContext).promise;
-
-                    const imgData = canvas.toDataURL('image/jpeg', 0.7);
-
-                    if (i > 1) {
-                        pdf.addPage();
-                    }
-
-                    const imgWidth = 210;
-                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-                    pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
-                    const texto_adi = parent.document.getElementById('texto_adicional').value;
-                    console.log('Texto adicional:', texto_adi);
-
-                    if (i === selectedCoordinates.page) {
-                        const qrWidth = 10;
-                        const qrHeight = 10;
-                        const qrX = (selectedCoordinates.x * 210) / viewport.width;
-                        const qrY = (selectedCoordinates.y * imgHeight) / viewport.height;
-
-                        pdf.addImage(qrDataUrl, 'JPEG', qrX, qrY, qrWidth, qrHeight);
-
-                        const textX = qrX + 11;
-                        const textY = qrY + 2;
-                        pdf.setFontSize(7);
-                        pdf.text('Firmado por:', textX, textY);
-                        pdf.text(dataForQR.nombre, textX, textY + 2.8);
-                        pdf.text('Fecha:', textX, textY + 5.4);
-                        pdf.text(dataForQR.fechaFirma, textX, textY + 7.8);
-                        pdf.text(texto_adi, textX, textY + 10.4);
-                    }
+                    image.onerror = (err) => {
+                        reject(err); // Rechaza si hay error al cargar la imagen
+                    };
+                } else {
+                    reject(new Error('No se pudo generar el código QR'));
                 }
-
-                const pdfData = pdf.output('datauristring');
-                const pdfBase64 = pdfData.split(',')[1];
-                password_deco = atob(selectedSignature.password);
-                
-
-                const fileInput = parent.document.getElementById('pdfFile');
-                
-                const file = fileInput.files[0];
-                var nombre_archivo = file.name;
-                console.log('Nombre del archivo:', nombre_archivo);
-
-                const formData = new FormData();
-                formData.append('signatureFileBase64', selectedSignature.signature);
-                formData.append('password',password_deco );
-                formData.append('documentoBase64', pdfBase64);
-                formData.append('llx', selectedCoordinates.x);
-                formData.append('lly', selectedCoordinates.y);
-                formData.append('pagina', selectedCoordinates.page);
-                formData.append('tipoEstampado', 'N');
-                formData.append('razon', selectedSignature.razon);
-                formData.append('nombre_archivo', nombre_archivo);
-                
-               
-
-                const response = await fetch('sign_pdf2.php', {
-                    method: 'POST',
-                    body: formData
-                });
-                 console.log('Respuesta del servidor:', response);
-                
-                if (!response.ok) {
-                    const errorMessage = `Error del servidor: ${response.status}. Detalles: ${await response.text()}`;
-                    throw new Error(errorMessage);
-                }
-
-                const responseData = await response.json();
-                //console.log('Respuesta del servidor:', responseData);
-
-                if (responseData.error) {
-                    throw new Error(responseData.error);
-                }
-
-                const signedPdfUrl = `data:application/pdf;base64,${responseData.documentoFirmado}`;
-                const downloadLink = document.getElementById('download');
-                // Cambiar el texto del enlace
-                const fileName = responseData.nombre_documentoFirmado; // Nombre del archivo dinámico
-                // Cambiar el atributo 'download' para que apunte al nuevo archivo
-                downloadLink.setAttribute('download', fileName);
-                downloadLink.href = signedPdfUrl;
-                downloadLink.style.display = 'block';
-                downloadLink.click();
-
-
-              
-
-            
-            } catch (error) {
-                console.error('Error durante el proceso de firma:', error);
-                // alert('Ocurrió un error durante el proceso de firma. Por favor, intenta nuevamente.');
-                Swal.fire(`Ocurrió un error durante el proceso de firma. Por favor, intenta nuevamente.`, "", "error");
-            }
-        } else {
-
-            // alert("Por favor, selecciona las coordenadas para el QR y la firma.");
-            Swal.fire(`Por favor, selecciona las coordenadas para el QR y la firma.`, "", "error");
-
-            
+            }, 100); // Ajusta el tiempo si es necesario
+        } catch (error) {
+            reject(error);
         }
     });
-});
+}
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectedSignature = JSON.parse(localStorage.getItem('selectedSignature'));
+
+            document.getElementById('done').addEventListener('click', async function () {
+
+                if (!selectedSignature) {
+                    // alert("Por favor, asegúrese de haber seleccionado una firma.");
+                    Swal.fire(`Por favor, asegúrese de haber seleccionado una firma.`, "", "error");
+                    return;
+                }
+
+                if (selectedCoordinates) {
+                    try {
+                        console.log('Iniciando proceso de firma...');
+
+                        const fechaActual = new Date();
+                        const fechaFirma = `${fechaActual.getFullYear()}-${('0' + (fechaActual.getMonth() + 1)).slice(-2)}-${('0' + fechaActual.getDate()).slice(-2)} ${('0' + fechaActual.getHours()).slice(-2)}:${('0' + fechaActual.getMinutes()).slice(-2)}:${('0' + fechaActual.getSeconds()).slice(-2)} -05:00`;
+
+
+                        const dataForQR = {
+                            nombre: selectedSignature.signature_name,
+                            fechaFirma: fechaFirma,
+                            razon: selectedSignature.razon,
+                            localidad: selectedSignature.localidad
+                        };
+
+
+                        const qrImg = await generateQRCode(dataForQR);
+
+                        const qrDataUrl = qrImg.src;
+
+                        const { jsPDF } = window.jspdf;
+                        const pdf = new jsPDF('p', 'mm', 'a4');
+
+
+                        for (let i = 1; i <= pdfDoc.numPages; i++) {
+                            console.log(" entro aqui");
+
+                            const page = await pdfDoc.getPage(i);
+                            const viewport = page.getViewport({ scale: scale });
+
+                            const canvas = document.createElement('canvas');
+                            const context = canvas.getContext('2d');
+
+                            canvas.width = viewport.width;
+                            canvas.height = viewport.height;
+
+                            const renderContext = {
+                                canvasContext: context,
+                                viewport: viewport
+                            };
+
+                            await page.render(renderContext).promise;
+
+                            const imgData = canvas.toDataURL('image/jpeg', 0.7);
+
+                            if (i > 1) {
+                                pdf.addPage();
+                            }
+
+                            const imgWidth = 210;
+                            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                            pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+                            const texto_adi = parent.document.getElementById('texto_adicional').value;
+                            console.log('Texto adicional:', texto_adi);
+
+                            if (i === selectedCoordinates.page) {
+                                const qrWidth = 10;
+                                const qrHeight = 10;
+                                const qrX = (selectedCoordinates.x * 210) / viewport.width;
+                                const qrY = (selectedCoordinates.y * imgHeight) / viewport.height;
+
+                                pdf.addImage(qrDataUrl, 'JPEG', qrX, qrY, qrWidth, qrHeight);
+
+                                const textX = qrX + 11;
+                                const textY = qrY + 2;
+                                pdf.setFontSize(7);
+                                pdf.text('Firmado por:', textX, textY);
+                                pdf.text(dataForQR.nombre, textX, textY + 2.8);
+                                pdf.text('Fecha:', textX, textY + 5.4);
+                                pdf.text(dataForQR.fechaFirma, textX, textY + 7.8);
+                                pdf.text(texto_adi, textX, textY + 10.4);
+                            }
+                        }
+
+                        const pdfData = pdf.output('datauristring');
+                        const pdfBase64 = pdfData.split(',')[1];
+                        password_deco = atob(selectedSignature.password);
+
+
+                        const fileInput = parent.document.getElementById('pdfFile');
+
+                        const file = fileInput.files[0];
+                        var nombre_archivo = file.name;
+                        console.log('Nombre del archivo:', nombre_archivo);
+
+                        const formData = new FormData();
+                        formData.append('signatureFileBase64', selectedSignature.signature);
+                        formData.append('password', password_deco);
+                        formData.append('documentoBase64', pdfBase64);
+                        formData.append('llx', selectedCoordinates.x);
+                        formData.append('lly', selectedCoordinates.y);
+                        formData.append('pagina', selectedCoordinates.page);
+                        formData.append('tipoEstampado', 'N');
+                        formData.append('razon', selectedSignature.razon);
+                        formData.append('nombre_archivo', nombre_archivo);
+
+
+
+                        const response = await fetch('sign_pdf2.php', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        console.log('Respuesta del servidor:', response);
+
+                        if (!response.ok) {
+                            const errorMessage = `Error del servidor: ${response.status}. Detalles: ${await response.text()}`;
+                            throw new Error(errorMessage);
+                        }
+
+                        const responseData = await response.json();
+                        //console.log('Respuesta del servidor:', responseData);
+
+                        if (responseData.error) {
+                            throw new Error(responseData.error);
+                        }
+
+                        const signedPdfUrl = `data:application/pdf;base64,${responseData.documentoFirmado}`;
+                        const downloadLink = document.getElementById('download');
+                        // Cambiar el texto del enlace
+                        const fileName = responseData.nombre_documentoFirmado; // Nombre del archivo dinámico
+                        // Cambiar el atributo 'download' para que apunte al nuevo archivo
+                        downloadLink.setAttribute('download', fileName);
+                        downloadLink.href = signedPdfUrl;
+                        downloadLink.style.display = 'block';
+                        downloadLink.click();
+
+
+
+
+
+                    } catch (error) {
+                        console.error('Error durante el proceso de firma:', error);
+                        // alert('Ocurrió un error durante el proceso de firma. Por favor, intenta nuevamente.');
+                        Swal.fire(`Ocurrió un error durante el proceso de firma. Por favor, intenta nuevamente.`, "", "error");
+                    }
+                } else {
+
+                    // alert("Por favor, selecciona las coordenadas para el QR y la firma.");
+                    Swal.fire(`Por favor, selecciona las coordenadas para el QR y la firma.`, "", "error");
+
+
+                }
+            });
+        });
     </script>
 </body>
-</html>
 
+</html>

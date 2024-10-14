@@ -320,7 +320,8 @@ th {
 	  border-color: inherit; 
 	  border-style: solid;   
 	  border-width: 0;   
-	  display: initial;   
+	  display: inherit;
+	  max-width: 99% !important;
 	}
   }
 label {

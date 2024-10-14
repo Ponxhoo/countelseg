@@ -79,7 +79,7 @@
             <table>
                 <tr>
                     <td valign="top" style="width: 5%;">
-                        <div class="geex-content__section geex-content__form "  style="width: 90%;"  >
+                        <div class="geex-content__section geex-content__form  movilform"  >
                             <div class="geex-content__form__wrapper">
                                 <div class="geex-content__form__wrapper__item geex-content__form__left">
                                    
@@ -110,7 +110,7 @@
                                 </label>
                             <br>
                           
-                                <input type="file" id="pdfFile" name="pdfFile" style="font-size: revert;" accept="application/pdf" />
+                                <input class="movil-2" type="file" id="pdfFile" name="pdfFile" style="font-size: revert; "  accept="application/pdf" />
 
                             </div>
                             <br>
@@ -131,8 +131,8 @@
                         </div>
 
                     </td>
-                    <td valign="top" style="width: 80%;">
-                        <div class="geex-content__section geex-content__form"  >
+                    <td valign="top" style="width: 100%;">
+                        <div class="geex-content__section geex-content__form movilform"  >
 
                         <iframe id="pdfViewerFrame" style="width: 100%; height: 600px;" frameborder="0"></iframe>
             
@@ -221,6 +221,26 @@
 
 </body>
 <style>
+
+
+@media (max-width: 768px) {
+	.movilform{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .movil-2{
+      font-size: revert; 
+      font-size: 7px !important;
+    }
+	
+  }
+
+  .movil-2{
+      
+      
+    }
+
+
     table {
         width: 100%;
         border-collapse: collapse;

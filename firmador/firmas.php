@@ -6,12 +6,15 @@ session_start();
 
 <?php include './partials/head.php' ?>
 
+
+
 <script>
 	var dias = <?php echo $_SESSION['dias'] ?>;
     window.onload = function() {
 		loadSignatures(dias);
     };
 </script>
+
 
 <body class="geex-dashboard">
 
@@ -94,7 +97,7 @@ session_start();
 				</div>
 
 
-				<table width="100%">
+				<table  id="tbl">
 					<thead>
 						<tr>
 							<th>Nombre</th>
@@ -192,7 +195,7 @@ session_start();
 
 </body>
 <style>
-	table {
+	/* table {
 		width: 100%;
 		border-collapse: collapse;
 	}
@@ -202,14 +205,91 @@ session_start();
 		text-align: left;
 		padding: 8px;
 		width: 33%;
-		/* Ajusta este valor según sea necesario */
-		
+
+	
 	}
 
 	th {
 		color: #011053 ;
 		background-color: #f2f2f2;
-	}
+	} */
+
+	 /* Estilos generales para la tabla */
+#tbl {
+    width: 100%; /* Se adapta al ancho del contenedor */
+    border-collapse: collapse; /* Elimina los espacios entre celdas */
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* Estilos para las celdas */
+#tbl th, #tbl td {
+    padding: 12px; /* Espacio interno de las celdas */
+    border: 1px solid #ddd; /* Bordes finos */
+}
+
+/* Colores para las filas */
+#tbl tr:nth-child(even) {
+    background-color: #f9f9f9; /* Color de fondo alternado */
+}
+
+#tbl th {
+    background-color: #4CAF50; /* Fondo verde para el encabezado */
+    color: white; /* Texto blanco */
+}
+
+/* Hacer que la tabla se vea bien en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    #tbl {
+        font-size: 14px; /* Reducir el tamaño de fuente */
+    }
+    #tbl th, #tbl td {
+        padding: 8px; /* Reducir el padding en pantallas pequeñas */
+    }
+}
+
+/* Para pantallas aún más pequeñas, como móviles */
+@media screen and (max-width: 480px) {
+    #tbl {
+        font-size: 12px; /* Aún más pequeño para móviles */
+    }
+    #tbl th, #tbl td {
+        padding: 5px; /* Reducir el padding aún más */
+    }
+
+    /* Convertir la tabla a un formato de lista */
+    #tbl, #tbl thead, #tbl tbody, #tbl th, #tbl td, #tbl tr {
+        display: block;
+    }
+
+    /* Ocultar el encabezado de la tabla en móviles */
+    #tbl thead tr {
+        display: none;
+    }
+
+    /* Mostrar cada celda en bloque con una etiqueta */
+    #tbl tr {
+        margin-bottom: 15px; /* Separar las filas */
+    }
+
+    #tbl td {
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    #tbl td:before {
+        content: attr(data-label); /* Agregar el nombre de la columna antes de cada celda */
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 10px;
+        text-align: left;
+        font-weight: bold;
+    }
+}
+
 </style>
 
 </html>
