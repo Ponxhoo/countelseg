@@ -10260,6 +10260,7 @@ blockquote span:before {
           align-items: center;
   gap: 14px;
   border-radius: 18px;
+  margin-top: 15px !important;
 }
 
 @media only screen and (max-width: 1600px) {

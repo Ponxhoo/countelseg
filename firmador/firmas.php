@@ -235,7 +235,7 @@ session_start();
 }
 
 #tbl th {
-    background-color: #4CAF50; /* Fondo verde para el encabezado */
+    background-color: #3885C9; /* Fondo verde para el encabezado */
     color: white; /* Texto blanco */
 }
 
