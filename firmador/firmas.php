@@ -108,6 +108,16 @@ session_start();
 					<tbody id="signaturesList">
 						<!-- Aquí se insertan las filas dinámicamente -->
 					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3">
+								<p  style="width: 100%;">
+									<b>Leyenda:</b> <br> </p>
+								<p> Firmas caducadas en color <b style="color: red;">ROJO</b></p>
+								<p> Firmas proximas a caducar en color <b style="color: orange;">NARANJA</b></p>
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 
 
